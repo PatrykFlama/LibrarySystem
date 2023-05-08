@@ -1,4 +1,4 @@
-package Student;
+package Structs;
 import java.util.HashMap;
 
 public class Student {
@@ -38,4 +38,6 @@ public class Student {
             }
         }
     }
+
+    // TODO saving and loading student accounts
 }
