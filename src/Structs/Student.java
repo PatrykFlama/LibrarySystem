@@ -5,7 +5,7 @@ public class Student {
     int id;
     String name;
     int year;
-    HashMap<Integer, Integer> rented_books; // book id, copies rented
+    HashMap<Integer, Integer> borrowed_books; // book id, copies rented
 
     public Student(){ this("", 1); }
     public Student(String name){ this(name, 1); }
@@ -14,27 +14,27 @@ public class Student {
         this.id = id;
         this.name = name;
         this.year = year;
-        this.rented_books = new HashMap<Integer, Integer>();
+        this.borrowed_books = new HashMap<Integer, Integer>();
     }
 
-    public void rentBook(int book_id){
-        Integer book_name = this.rented_books.get(book_id);
+    public void borrowBook(int book_id){
+        Integer book_name = this.borrowed_books.get(book_id);
         if(book_name == null){
-            this.rented_books.put(book_id, 1);
+            this.borrowed_books.put(book_id, 1);
         } else {
-            this.rented_books.put(book_id, book_name + 1);
+            this.borrowed_books.put(book_id, book_name + 1);
         }
     }
 
     public void returnBook(int book_id) throws Exception {
-        Integer book_name = this.rented_books.get(book_id);
+        Integer book_name = this.borrowed_books.get(book_id);
         if(book_name == null){
             throw new Exception("You have not rented this book.");
         } else {
             if(book_name == 1){
-                this.rented_books.remove(book_id);
+                this.borrowed_books.remove(book_id);
             } else {
-                this.rented_books.put(book_id, book_name - 1);
+                this.borrowed_books.put(book_id, book_name - 1);
             }
         }
     }

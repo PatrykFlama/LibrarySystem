@@ -1,10 +1,10 @@
 package Structs;
 
 public class Book {
+    int isbn;       // book id
     String name;
     String author;
     int year;
-    int isbn;       // book id
 
     public Book(){ this(""); }
     public Book(String name){ this(name, 0); }
