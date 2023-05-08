@@ -1,11 +1,11 @@
 package Structs;
 import java.util.HashMap;
 
-public class Books {
-    HashMap<Integer, Book> books;   // book isbn (id), book
+public class Objects {
+    HashMap<Integer, Object> books;
 
-    public Books(){
-        this.books = new HashMap<Integer, Book>();
+    public Objects(){
+        this.books = new HashMap<Integer, Object>();
     }
 
     public void addBook(Book book){
@@ -16,5 +16,5 @@ public class Books {
         this.books.remove(book_id);
     }
 
-    // TODO saving and loading books
+    // TODO saving and loading Objects
 }
