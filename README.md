@@ -1,17 +1,97 @@
 # LibrarySysyem
 desc
-<!-- ## Description -->
+<!-- TODO ## Description -->
 
 ## Class dependency graph
 ```mermaid
-graph TD
-    M[MainUI] --> |login| LU[LibrarianUI]
-    M         --> |login| SU[StudentUI]
-    LU --> S[Student]
-    LU --> Bs[Books]
-    Bs --> B[Book]
-    SU --> Se[Student Edit]
-    SU --> Bs
+classDiagram
+    MainUI --> LibrarianUI : login
+    MainUI --> StudentUI : login
+    LibrarianUI --> Students
+    LibrarianUI --> Books
+    Books --> Book
+    StudentUI --> StudentEdit
+    StudentUI --> Books
+    Students --> Student
+    StudentEdit --> Student
+    LibrarianUI --> BookEdit
+    BookEdit --> Book
+
+    class MainUI{
+        +void main(String[] args)
+        +void login()
+    }
+    class LibrarianUI{
+        Books books
+        Students students
+
+        +void addBook()
+        +void removeBook()
+        +void editBook()
+        +void addStudent()
+        +void removeStudent()
+        +void editStudent()
+        +void showBooks()
+        +void showStudents()
+    }
+    class StudentUI{
+        Student student
+
+        +void showBooks()
+        +void rentBook()
+        +void returnBook()
+        +String locateBook()
+        +void editAccount()
+    }
+    class Students{
+        HashMap students
+
+        +void addStudent()
+        +void removeStudent()
+        +void editStudent()
+        +void findStudent()
+
+        +void saveStudents()
+        +Students loadStudents()
+    }
+    class Student{
+        int id
+        String name
+        int year
+        HashMap borrowed_books
+
+        +void borrowBook()
+        +void returnBook()
+
+        +void saveStudent()
+        +Student loadStudent()
+    }
+    class Books{
+        HashMap books
+
+        +void addBook()
+        +void removeBook()
+        +void editBook()
+        +void findBook()
+
+        +void saveBooks()
+        +Books loadBooks()
+    }
+    class Book{
+        int isbn
+        String name
+        String author
+        int year
+
+        +void saveBook()
+        +Book loadBook()
+    }
+    class StudentEdit{
+        +void editStudent()
+    }
+    class BookEdit{
+        +void editBook()
+    }
 ```
 
 ## Stuff
