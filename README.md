@@ -5,17 +5,13 @@ desc
 ## Class dependency graph
 ```mermaid
 graph TD
-    A[Main]-->B[User Interface]
-    B-->C[Login]
-    B-->D[Main Page]
-    D-->E[Librarian]
-    D-->F[Student]
-    E-->G[Students list]
-    E-->H[Books list]
-    F-->I[Book list]
-    F-->J[Account settings]
-    G-->Ga[Student account settings]
-    I-->Ia[Book info page]
+    M[MainUI] --> |login| LU[LibrarianUI]
+    M         --> |login| SU[StudentUI]
+    LU --> S[Student]
+    LU --> Bs[Books]
+    Bs --> B[Book]
+    SU --> Se[Student Edit]
+    SU --> Bs
 ```
 
 ## Stuff
@@ -25,9 +21,9 @@ Przynajmniej siedem zaimplementowanych nietrywialnych klas (Zawierające przynaj
 ### Co się składa na projekt
 * Przedstawienie analizy obiektowej za pomocą diagramu klas (UML).
 * Analiza obiektowa (pisemnie)
-  * spis klas, które implementuje program wraz z jednoakapitowym opisem roli klasy w systemie (może być wygenerowane automatem typu Doxygen)
-  * diagram klas (UML)
-  * użyte wzorce projektowe
+    * spis klas, które implementuje program wraz z jednoakapitowym opisem roli klasy w systemie (może być wygenerowane automatem typu Doxygen)
+    * diagram klas (UML)
+    * użyte wzorce projektowe
 * pliki źródłowe
 * wersja skompilowana
 
