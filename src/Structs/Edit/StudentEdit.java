@@ -10,15 +10,19 @@ public class StudentEdit extends JComponent implements ActionListener {
     Student obj;
     String file_name;
 
+    JTextField id_field;
     JTextField name_field;
     JTextField term_field;
+    JTextArea borrowed_elems_field;
 
     public StudentEdit(Student obj, String file_name){
         this.obj = obj;
         this.file_name = file_name;
 
+        this.id_field = new JTextField(Integer.toString(this.obj.id));
         this.name_field = new JTextField(this.obj.name);
         this.term_field = new JTextField(Integer.toString(this.obj.term));
+        this.borrowed_elems_field = new JTextArea(this.obj.borrowedElements());
     }
 
     public void run(){
@@ -36,13 +40,18 @@ public class StudentEdit extends JComponent implements ActionListener {
     }
 
     void setContainer(Container container){
+        id_field.setMaximumSize(new Dimension(200, 20));
         name_field.setMaximumSize(new Dimension(200, 20));
         term_field.setMaximumSize(new Dimension(200, 20));
 
-        container.add(new JLabel("Name: "));
+        container.add(new JLabel("Student ID:"));
+        container.add(this.id_field);
+        container.add(new JLabel("Name:"));
         container.add(this.name_field);
-        container.add(new JLabel("Term: "));
+        container.add(new JLabel("Term:"));
         container.add(this.term_field);
+        container.add(new JLabel("Borrowed Elements:"));
+        container.add(this.borrowed_elems_field);
 
         JButton save_button = new JButton("Save");
         save_button.addActionListener(this);
@@ -53,6 +62,7 @@ public class StudentEdit extends JComponent implements ActionListener {
     public void actionPerformed(ActionEvent e){
         String cmd = e.getActionCommand();
         if(cmd.equals("save")){
+            this.obj.id = Integer.parseInt(this.id_field.getText());
             this.obj.name = this.name_field.getText();
             this.obj.term = Integer.parseInt(this.term_field.getText());
             Student.save(this.obj, this.file_name);

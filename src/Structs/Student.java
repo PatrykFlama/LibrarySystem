@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class Student implements Serializable {
     private static final long serialVersionUID = 1234L;
-    int id;
+    public int id;
     public String name;
     public int term;
     HashMap<Integer, Integer> borrowed_elems; // id, amt
@@ -50,6 +50,14 @@ public class Student implements Serializable {
 
     public String toString(){
         String result = "Student: " + this.name + " (" + this.term + ")\n";
+        for (Integer id : this.borrowed_elems.keySet()){
+            result += "    " + id + ": " + this.borrowed_elems.get(id) + "\n";
+        }
+        return result;
+    }
+
+    public String borrowedElements(){
+        String result = "";
         for (Integer id : this.borrowed_elems.keySet()){
             result += "    " + id + ": " + this.borrowed_elems.get(id) + "\n";
         }
