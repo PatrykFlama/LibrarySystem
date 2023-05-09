@@ -45,6 +45,14 @@ public class Student {
         }
     }
 
+    public String toString(){
+        String result = "Student: " + this.name + " (" + this.year + ")\n";
+        for (Integer id : this.borrowed_elems.keySet()){
+            result += "    " + id + ": " + this.borrowed_elems.get(id) + "\n";
+        }
+        return result;
+    }
+
     public void Edit(String file_name){
         // TODO: StudentEditor editor = new StudentEditor(this, file_name);
         // editor.run();

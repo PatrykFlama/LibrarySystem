@@ -12,7 +12,7 @@ classDiagram
     MainUI --> LibrarianUI : login
     MainUI --> StudentUI : login
     LibrarianUI --> Students
-    StudentUI --> StudentEdit
+    StudentUI --> StudentEdit : editAccount
     Students --> Student
     StudentEdit --> Student
     StudentUI --> Elems
@@ -126,6 +126,9 @@ classDiagram
         +Movie load()
     }
 ```
+___
+## TODO
+* add time
 ___
 ## Stuff
 ### Wymagania
