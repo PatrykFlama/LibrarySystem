@@ -56,14 +56,6 @@ public class Student implements Serializable {
         return result;
     }
 
-    public String borrowedElements(){
-        String result = "";
-        for (Integer id : this.borrowed_elems.keySet()){
-            result += "    " + id + ": " + this.borrowed_elems.get(id) + "\n";
-        }
-        return result;
-    }
-
     public Boolean checkData(){
         return !(this.name.equals("") || this.term < 0);
     }

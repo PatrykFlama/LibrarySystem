@@ -13,7 +13,6 @@ public class StudentEdit extends JComponent implements ActionListener {
     JTextField id_field;
     JTextField name_field;
     JTextField term_field;
-    JTextArea borrowed_elems_field;
 
     public StudentEdit(Student obj, String file_name){
         this.obj = obj;
@@ -22,7 +21,6 @@ public class StudentEdit extends JComponent implements ActionListener {
         this.id_field = new JTextField(Integer.toString(this.obj.id));
         this.name_field = new JTextField(this.obj.name);
         this.term_field = new JTextField(Integer.toString(this.obj.term));
-        this.borrowed_elems_field = new JTextArea(this.obj.borrowedElements());
     }
 
     public void run(){
@@ -50,8 +48,6 @@ public class StudentEdit extends JComponent implements ActionListener {
         container.add(this.name_field);
         container.add(new JLabel("Term:"));
         container.add(this.term_field);
-        container.add(new JLabel("Borrowed Elements:"));
-        container.add(this.borrowed_elems_field);
 
         JButton save_button = new JButton("Save");
         save_button.addActionListener(this);

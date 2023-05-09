@@ -5,6 +5,10 @@ public class Main {
     public static void main(String[] args) {
         System.err.println("Hello world!");
         Student s = Student.load("test.txt");
+        s.borrowElem(1);
+        s.borrowElem(1);
+        s.borrowElem(1);
+        s.borrowElem(2);
         s.Edit("test.txt");
     }
 }
