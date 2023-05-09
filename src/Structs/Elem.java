@@ -20,7 +20,7 @@ public class Elem implements Serializable {
     }
 
     public void Edit(String file_name){
-        // TODO: ObjectEditor editor = new ObjectEditor(this, file_name);
+        // TODO: ElemEditor editor = new ElemEditor(this, file_name);
         // editor.run();
     }
 
@@ -33,7 +33,7 @@ public class Elem implements Serializable {
             objectOutput.close();
             fileOutput.close();
         } catch (IOException e){
-            System.out.println("Couldn't save object!");
+            System.out.println("Couldn't save element data!");
         }
     }
 
