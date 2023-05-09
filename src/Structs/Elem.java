@@ -8,9 +8,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import Structs.Edit.ElemEdit;
+
 public class Elem implements Serializable {
     private static final long serialVersionUID = 1234L;
-    int id;
+    public int id;
 
     public Elem(){ this(0); }
     public Elem(int id){ this.id = id; }
@@ -20,8 +22,12 @@ public class Elem implements Serializable {
     }
 
     public void Edit(String file_name){
-        // TODO: ElemEditor editor = new ElemEditor(this, file_name);
-        // editor.run();
+        ElemEdit editor = new ElemEdit(this, file_name);
+        editor.run();
+    }
+
+    public Boolean checkData(){
+        return true;
     }
 
     public static void save(Elem object, String file){
