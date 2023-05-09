@@ -6,9 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Student {
+public class Student implements Serializable {
+    private static final long serialVersionUID = 1234L;
     int id;
     public String name;
     public int term;

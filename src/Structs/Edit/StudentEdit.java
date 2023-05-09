@@ -53,12 +53,9 @@ public class StudentEdit extends JComponent implements ActionListener {
     public void actionPerformed(ActionEvent e){
         String cmd = e.getActionCommand();
         if(cmd.equals("save")){
-            name_field.setText("saved");
             this.obj.name = this.name_field.getText();
             this.obj.term = Integer.parseInt(this.term_field.getText());
             Student.save(this.obj, this.file_name);
         }
     }
-
-
 }
