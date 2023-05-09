@@ -60,7 +60,7 @@ public class Student implements Serializable {
         return !(this.name.equals("") || this.term < 0);
     }
 
-    public void Edit(){
+    public void Edit(){ 
         StudentEdit editor = new StudentEdit(this);
         editor.run();
         while(editor.isRunning()){System.err.print("");}
