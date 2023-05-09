@@ -60,9 +60,16 @@ public class Student implements Serializable {
         return !(this.name.equals("") || this.term < 0);
     }
 
-    public void Edit(String file_name){
-        StudentEdit editor = new StudentEdit(this, file_name);
+    public void Edit(){
+        StudentEdit editor = new StudentEdit(this);
         editor.run();
+        while(editor.isRunning()){System.err.print("");}
+        editor.kill();
+
+        if(this.checkData())
+            System.err.println("Student data saved!");
+        else
+            System.err.println("Student data is invalid, not saved!");
     }
 
     public static void save(Student object, String file){

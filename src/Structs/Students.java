@@ -1,8 +1,10 @@
 package Structs;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -27,7 +29,8 @@ public class Students implements Serializable{
 
     public void editStudent(int student_id, String file_name){
         Student student = this.students.get(student_id);
-        student.Edit(file_name);
+        student.Edit();
+        if(student != null) this.students.put(student_id, student);
     }
 
     public String toString(){
@@ -39,7 +42,16 @@ public class Students implements Serializable{
     }
 
     public static void save(Students object, String file){
-        Students.save(object, file);
+        try{
+            FileOutputStream fileOutput = new FileOutputStream(file);
+            ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
+
+            objectOutput.writeObject(object);
+            objectOutput.close();
+            fileOutput.close();
+        } catch (IOException e){
+            System.err.println("Couldn't save students accounts!");
+        }
     }
 
     public static Students load(String file){

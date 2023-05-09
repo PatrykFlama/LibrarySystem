@@ -9,7 +9,9 @@ public class Main {
         s.borrowElem(1);
         s.borrowElem(1);
         s.borrowElem(2);
-        s.Edit("test.txt");
+        s.Edit();
+        Student.save(s, "test.txt");
+        System.err.println(s);
     }
 }
 
