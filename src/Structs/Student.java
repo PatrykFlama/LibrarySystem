@@ -1,4 +1,5 @@
 package Structs;
+import Structs.Edit.StudentEdit;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,12 +10,12 @@ import java.util.HashMap;
 
 public class Student {
     int id;
-    String name;
-    int year;
+    public String name;
+    public int year;
     HashMap<Integer, Integer> borrowed_elems; // id, amt
 
-    public Student(){ this("", 1); }
-    public Student(String name){ this(name, 1); }
+    public Student(){ this("None"); }
+    public Student(String name){ this(name, 0); }
     public Student(String name, int year){ this(name, year, name.hashCode()); }
     public Student(String name, int year, int id){
         this.id = id;
@@ -54,8 +55,8 @@ public class Student {
     }
 
     public void Edit(String file_name){
-        // TODO: StudentEditor editor = new StudentEditor(this, file_name);
-        // editor.run();
+        StudentEdit editor = new StudentEdit(this, file_name);
+        editor.run();
     }
 
     public static void save(Student object, String file){
