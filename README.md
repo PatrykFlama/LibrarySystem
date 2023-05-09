@@ -126,7 +126,7 @@ classDiagram
         +Movie load()
     }
 ```
-
+___
 ## Stuff
 ### Wymagania
 Przynajmniej siedem zaimplementowanych nietrywialnych klas (Zawierające przynajmniej jedno pole oraz jedną metodę)
