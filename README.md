@@ -2,7 +2,7 @@
 System for manging a university library. smth smth smth. blah blah blah.  
 How it works:  
 User can log in as librarian or as student.  
-Librarian can add/remove/edit books, movies, papers, other library stuff and students.  
+Librarian can add/remove/edit books, movies, NewsPapers, other library stuff and students.  
 Student can rent/return books (and other), search for them and manage his account.  
 More features will be added as needed.  
 
@@ -15,12 +15,12 @@ classDiagram
     StudentUI --> StudentEdit
     Students --> Student
     StudentEdit --> Student
-    StudentUI --> Objects
-    LibrarianUI --> Objects
-    Objects --> Object
-    Object --|> Book
-    Object --|> Paper
-    Object --|> Movie
+    StudentUI --> Elems
+    LibrarianUI --> Elems
+    Elems --> Elem
+    Elem --|> Book
+    Elem --|> NewsPaper
+    Elem --|> Movie
 
     class MainUI{
         +void main(String[] args)
@@ -74,22 +74,22 @@ classDiagram
     class StudentEdit{
         +void editStudent()
     }
-    class Objects{
-        +HashMap objects_map
+    class Elems{
+        +HashMap Elems_map
 
-        +void addObject()
-        +void removeObject()
-        +void editObject()
-        +void findObject()
+        +void addElem()
+        +void removeElem()
+        +void editElem()
+        +void findElem()
 
-        +void saveObjects()
-        +Objects loadObjects()
+        +void save()
+        +Elems load()
     }
-    class Object{
+    class Elem{
         +int id
 
-        +void saveObject()
-        +Object loadObject()
+        +void save()
+        +Elem load()
     }
     class Book{
         +String name
@@ -97,15 +97,15 @@ classDiagram
         +int year
         +String genre
 
-        +void saveBook()
-        +Book loadBook()
+        +void save()
+        +Book load()
     }
-    class Paper{
+    class NewsPaper{
         +String title
         +int date
 
-        +void savePaper()
-        +Paper loadPaper()
+        +void save()
+        +NewsPaper load()
     }
     class Movie{
         +String title
@@ -113,8 +113,8 @@ classDiagram
         +int year
         +String genre
 
-        +void saveMovie()
-        +Movie loadMovie()
+        +void save()
+        +Movie load()
     }
 ```
 

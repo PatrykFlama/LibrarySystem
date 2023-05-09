@@ -1,7 +1,8 @@
-package Structs.Book;
+package Structs.Elements;
 
-public class Book extends Object {
-    int id;
+import Structs.Elem;
+
+public class Book extends Elem {
     String name;
     String author;
     int year;
@@ -11,8 +12,8 @@ public class Book extends Object {
     public Book(String name, int id){ this(name, id, ""); }
     public Book(String name, int id, String author){ this(name, id, author, 0); }
     public Book(String name, int id, String author, int year){
+        super(id);
         this.name = name;
-        this.id = id;
         this.author = author;
         this.year = year;
     }
@@ -26,7 +27,7 @@ public class Book extends Object {
         // editor.run();
     }
 
-    public static Book read(String file){
-        return (Book) Object.read(file);
+    public static Book load(String file){
+        return (Book) Elem.load(file);
     }
 }

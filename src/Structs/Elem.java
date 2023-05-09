@@ -6,12 +6,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Object {
+public class Elem implements Serializable {
+    private static final long serialVersionUID = 1234L;
     int id;
 
-    public Object(){ this(0); }
-    public Object(int id){ this.id = id; }
+    public Elem(){ this(0); }
+    public Elem(int id){ this.id = id; }
 
     public String toString(){
         return "Object: " + this.id;
@@ -22,7 +24,7 @@ public class Object {
         // editor.run();
     }
 
-    public static void save(Object object, String file){
+    public static void save(Elem object, String file){
         try{
             FileOutputStream fileOutput = new FileOutputStream(file);
             ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
@@ -35,18 +37,18 @@ public class Object {
         }
     }
 
-    public static Object read(String file){
+    public static Elem load(String file){
         try {
             FileInputStream fileInput = new FileInputStream(file);
             ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 
-            Object object = (Object) objectInput.readObject();
+            Elem object = (Elem) objectInput.readObject();
             objectInput.close();
             fileInput.close();
             return object;
         } catch (FileNotFoundException e) {
             System.out.println("File does not exist, created new object");
-            return new Object();
+            return new Elem();
         } catch (IOException e) {
             System.out.println("Error while reading data!");
         } catch (ClassNotFoundException e) {
