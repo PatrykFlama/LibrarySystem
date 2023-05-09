@@ -79,14 +79,17 @@ classDiagram
 
         +void addElem()
         +void removeElem()
+        +void getElem()
         +void editElem()
-        +void findElem()
+        +String toString()
 
         +void save()
         +Elems load()
     }
     class Elem{
         +int id
+
+        +String toString()
 
         +void save()
         +Elem load()
@@ -97,12 +100,16 @@ classDiagram
         +int year
         +String genre
 
+        +String toString()
+
         +void save()
         +Book load()
     }
     class NewsPaper{
         +String title
         +int date
+
+        +String toString()
 
         +void save()
         +NewsPaper load()
@@ -112,6 +119,8 @@ classDiagram
         +String director
         +int year
         +String genre
+
+        +String toString()
 
         +void save()
         +Movie load()
