@@ -42,16 +42,23 @@ public class StudentEdit extends JComponent implements ActionListener {
         name_field.setMaximumSize(new Dimension(200, 20));
         term_field.setMaximumSize(new Dimension(200, 20));
 
+        JButton id_reset = new JButton("ID reset");
+        id_reset.addActionListener(this);
+        id_reset.setActionCommand("id_reset");
+        id_reset.setPreferredSize(new Dimension(0, 20));
+        
+        JButton save_button = new JButton("Save");
+        save_button.addActionListener(this);
+        save_button.setActionCommand("save");
+        
         container.add(new JLabel("Student ID:"));
         container.add(this.id_field);
+        container.add(id_reset);
         container.add(new JLabel("Name:"));
         container.add(this.name_field);
         container.add(new JLabel("Term:"));
         container.add(this.term_field);
 
-        JButton save_button = new JButton("Save");
-        save_button.addActionListener(this);
-        save_button.setActionCommand("save");
         container.add(save_button);
     }
 
@@ -67,6 +74,10 @@ public class StudentEdit extends JComponent implements ActionListener {
                 setVisible(false);
             else
                 JOptionPane.showMessageDialog(null, "Invalid data!", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if(cmd.equals("id_reset")){
+            this.obj.name = this.name_field.getText();
+            this.obj.idReset();
+            this.id_field.setText(Integer.toString(this.obj.id));
         }
     }
 

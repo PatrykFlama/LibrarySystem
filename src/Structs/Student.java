@@ -60,10 +60,14 @@ public class Student implements Serializable {
         return !(this.name.equals("") || this.term < 0);
     }
 
+    public void idReset(){
+        this.id = ("Student"+name).hashCode();
+    }
+
     public void Edit(){ 
         StudentEdit editor = new StudentEdit(this);
         editor.run();
-        while(editor.isRunning()){System.err.print("");}
+        while(editor.isRunning()){System.err.print("");}    // without this print statement, the program wont exit the loop
         editor.kill();
 
         if(this.checkData())
