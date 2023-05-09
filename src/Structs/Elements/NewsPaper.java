@@ -20,7 +20,7 @@ public class NewsPaper extends Elem {
     }
 
     public void Edit(String file_name){
-        // TODO: NewsPaperEditor editor = new NewsPaperEditor(this, file_name);
+        // TODO: NewsPaperEdit editor = new NewsPaperEdit(this, file_name);
         // editor.run();
     }
 

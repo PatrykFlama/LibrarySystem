@@ -26,7 +26,7 @@ public class Movie extends Elem {
     }
         
     public void Edit(String file_name){
-        // TODO: MovieEditor editor = new MovieEditor(this, file_name);
+        // TODO: MovieEdit editor = new MovieEdit(this, file_name);
         // editor.run();
     }
 

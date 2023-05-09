@@ -23,7 +23,7 @@ public class Book extends Elem {
     }
 
     public void Edit(String file_name){
-        // TODO: BookEditor editor = new BookEditor(this, file_name);
+        // TODO: BookEdit editor = new BookEdit(this, file_name);
         // editor.run();
     }
 
