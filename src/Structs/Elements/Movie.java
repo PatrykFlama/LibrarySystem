@@ -9,7 +9,7 @@ public class Movie extends Elem {
     String genre;
 
     public Movie(){ this("", ""); }
-    public Movie(String title){ this(title, "", 0); }
+    public Movie(String title){ this(title, "", title.hashCode()); }
     public Movie(String title, String genre){ this(title, genre, 0); }
     public Movie(String title, String genre, int id){ this(title, genre, id, ""); }
     public Movie(String title, String genre, int id, String director){ this(title, genre, id, director, 0); }
