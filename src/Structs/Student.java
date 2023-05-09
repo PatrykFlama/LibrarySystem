@@ -11,16 +11,16 @@ import java.util.HashMap;
 public class Student {
     int id;
     public String name;
-    public int year;
+    public int term;
     HashMap<Integer, Integer> borrowed_elems; // id, amt
 
     public Student(){ this("None"); }
     public Student(String name){ this(name, 0); }
-    public Student(String name, int year){ this(name, year, name.hashCode()); }
-    public Student(String name, int year, int id){
+    public Student(String name, int term){ this(name, term, name.hashCode()); }
+    public Student(String name, int term, int id){
         this.id = id;
         this.name = name;
-        this.year = year;
+        this.term = term;
         this.borrowed_elems = new HashMap<Integer, Integer>();
     }
 
@@ -47,7 +47,7 @@ public class Student {
     }
 
     public String toString(){
-        String result = "Student: " + this.name + " (" + this.year + ")\n";
+        String result = "Student: " + this.name + " (" + this.term + ")\n";
         for (Integer id : this.borrowed_elems.keySet()){
             result += "    " + id + ": " + this.borrowed_elems.get(id) + "\n";
         }

@@ -10,9 +10,15 @@ public class StudentEdit extends JComponent implements ActionListener {
     Student obj;
     String file_name;
 
+    JTextField name_field;
+    JTextField term_field;
+
     public StudentEdit(Student obj, String file_name){
         this.obj = obj;
         this.file_name = file_name;
+
+        this.name_field = new JTextField(this.obj.name);
+        this.term_field = new JTextField(Integer.toString(this.obj.term));
     }
 
     public void run(){
@@ -21,34 +27,35 @@ public class StudentEdit extends JComponent implements ActionListener {
         frame.setSize(500, 500);
         frame.setLocationRelativeTo(null);
         
-        Container content = frame.getContentPane()    
+        Container content = frame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-
-        JLabel name_label = new JLabel("Name: ");
-        JTextField name_field = new JTextField(this.obj.name);
-        name_field.setMaximumSize(new Dimension(200, 20));
-        content.add(name_label);
-        content.add(name_field);
+        setContainer(content);
         
-        JLabel year_label = new JLabel("Year: ");
-        JTextField year_field = new JTextField(Integer.toString(this.obj.year));
-        year_field.setMaximumSize(new Dimension(200, 20));
-        content.add(year_label);
-        content.add(year_field);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    void setContainer(Container container){
+        name_field.setMaximumSize(new Dimension(200, 20));
+        term_field.setMaximumSize(new Dimension(200, 20));
+
+        container.add(new JLabel("Name: "));
+        container.add(this.name_field);
+        container.add(new JLabel("Term: "));
+        container.add(this.term_field);
 
         JButton save_button = new JButton("Save");
         save_button.addActionListener(this);
         save_button.setActionCommand("save");
-        content.add(save_button);
-        
-        frame.setVisible(true);
+        container.add(save_button);
     }
 
     public void actionPerformed(ActionEvent e){
         String cmd = e.getActionCommand();
         if(cmd.equals("save")){
-            this.obj.name = e.getActionCommand();
-            this.obj.year = Integer.parseInt(e.getActionCommand());
+            name_field.setText("saved");
+            this.obj.name = this.name_field.getText();
+            this.obj.term = Integer.parseInt(this.term_field.getText());
             Student.save(this.obj, this.file_name);
         }
     }
