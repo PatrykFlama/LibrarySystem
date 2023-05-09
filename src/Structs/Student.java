@@ -18,7 +18,7 @@ public class Student implements Serializable {
 
     public Student(){ this("None"); }
     public Student(String name){ this(name, 0); }
-    public Student(String name, int term){ this(name, term, name.hashCode()); }
+    public Student(String name, int term){ this(name, term, ("Student"+name).hashCode()); }
     public Student(String name, int term, int id){
         this.id = id;
         this.name = name;
