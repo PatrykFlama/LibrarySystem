@@ -52,12 +52,12 @@ public class Students implements Serializable{
             fileInput.close();
             return object;
         } catch (FileNotFoundException e) {
-            System.out.println("File does not exist, created new object");
+            System.err.println("File does not exist, created new object");
             return new Students();
         } catch (IOException e) {
-            System.out.println("Error while reading data!");
+            System.err.println("Error while reading data!");
         } catch (ClassNotFoundException e) {
-            System.out.println("Object not found!");
+            System.err.println("Object not found!");
         }
 
         return null;

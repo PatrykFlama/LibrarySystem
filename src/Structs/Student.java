@@ -78,7 +78,7 @@ public class Student implements Serializable {
             objectOutput.close();
             fileOutput.close();
         } catch (IOException e){
-            System.out.println("Couldn't save student account!");
+            System.err.println("Couldn't save student account!");
         }
     }
 
@@ -92,12 +92,12 @@ public class Student implements Serializable {
             fileInput.close();
             return object;
         } catch (FileNotFoundException e) {
-            System.out.println("File does not exist, created new object");
+            System.err.println("File does not exist, created new object");
             return new Student();
         } catch (IOException e) {
-            System.out.println("Error while reading data!");
+            System.err.println("Error while reading data!");
         } catch (ClassNotFoundException e) {
-            System.out.println("Object not found!");
+            System.err.println("Object not found!");
         }
 
         return null;
