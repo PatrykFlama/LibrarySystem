@@ -64,6 +64,10 @@ public class Student implements Serializable {
         return result;
     }
 
+    public Boolean checkData(){
+        return !(this.name.equals("") || this.term < 0);
+    }
+
     public void Edit(String file_name){
         StudentEdit editor = new StudentEdit(this, file_name);
         editor.run();

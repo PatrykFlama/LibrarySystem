@@ -65,7 +65,11 @@ public class StudentEdit extends JComponent implements ActionListener {
             this.obj.id = Integer.parseInt(this.id_field.getText());
             this.obj.name = this.name_field.getText();
             this.obj.term = Integer.parseInt(this.term_field.getText());
-            Student.save(this.obj, this.file_name);
+            
+            if(this.obj.checkData())
+                Student.save(this.obj, this.file_name);
+            else
+                JOptionPane.showMessageDialog(null, "Invalid data!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
