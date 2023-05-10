@@ -67,7 +67,7 @@ public class Student implements Serializable {
     public void Edit(){ 
         StudentEdit editor = new StudentEdit(this);
         editor.run();
-        while(editor.isRunning()){System.err.print("");}    // without this print statement, the program wont exit the loop
+        while(editor.isRunning()){System.err.print("");}    //! without this print statement, the program wont exit the loop
         editor.kill();
 
         if(this.checkData())
