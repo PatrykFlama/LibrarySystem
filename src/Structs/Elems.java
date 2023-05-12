@@ -23,13 +23,14 @@ public class Elems implements Serializable{
         this.elems.remove(elem_id);
     }
 
-    public Elem getElem(int elem_id){
+    public Elem getElem(int elem_id) throws IllegalArgumentException {
+        if(!this.elems.containsKey(elem_id)) throw new IllegalArgumentException("Element with id " + elem_id + " does not exist");
         return this.elems.get(elem_id);
     }
 
-    public void editElem(int elem_id, String file_name){
-        Elem elem = this.elems.get(elem_id);
-        elem.Edit(file_name);
+    public void replaceElem(int old_id, Elem new_elem){
+        this.elems.remove(old_id);
+        this.elems.put(new_elem.id, new_elem);
     }
 
     public String toString(){

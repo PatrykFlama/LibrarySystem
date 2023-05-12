@@ -3,10 +3,10 @@ package Structs.Elements;
 import Structs.Elem;
 
 public class Movie extends Elem {
-    String title;
-    String director;
-    int year;
-    String genre;
+    public String title;
+    public String director;
+    public int year;
+    public String genre;
 
     public Movie(){ this(""); }
     public Movie(String title){ this(title, ""); }
@@ -24,10 +24,9 @@ public class Movie extends Elem {
     public String toString(){
         return "Movie: " + "(" + this.id + ") " + this.title + " by " + this.director + ", " + this.year + " (" + this.genre + ")";
     }
-        
-    public void Edit(String file_name){
-        // TODO: MovieEdit editor = new MovieEdit(this, file_name);
-        // editor.run();
+
+    public void idReset(){
+        this.id = ("Movie"+title).hashCode();
     }
 
     public static Movie load(String file){

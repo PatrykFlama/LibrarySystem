@@ -83,20 +83,12 @@ public class StudentEdit extends JComponent implements ActionListener {
             
             if(this.student.checkData()){
                 students.replaceStudent(oldID, student);
-                this.kill();
+                frame.dispose();
             } else
                 JOptionPane.showMessageDialog(null, "Invalid data!", "Error", JOptionPane.ERROR_MESSAGE);
         } else if(cmd.equals("id_reset")){
             this.student.idReset();
             this.id_field.setText(Integer.toString(this.student.id));
         }
-    }
-        
-    public Boolean isRunning(){
-        return frame.isVisible();
-    }
-
-    public void kill(){
-        frame.dispose();
     }
 }

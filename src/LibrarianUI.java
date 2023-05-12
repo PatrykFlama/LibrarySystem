@@ -6,7 +6,13 @@ import javax.swing.*;
 
 import Structs.Student;
 import Structs.Students;
+import Structs.Elem;
 import Structs.Elems;
+import Structs.Edit.ElemEdit;
+import Structs.Edit.OtherElems.*;
+import Structs.Elements.Book;
+import Structs.Elements.Movie;
+import Structs.Elements.NewsPaper;
 import Structs.Edit.StudentEdit; 
 
 
@@ -145,6 +151,30 @@ public class LibrarianUI extends JComponent implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Id has to be integer!", "Error", JOptionPane.ERROR_MESSAGE);
             } catch(IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(null, "Student with given id does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else if(cmd.equals("element_edit_window")){
+            try{
+                Integer elementID = Integer.parseInt(currentElementID.getText());
+                Elem element = elements.getElem(elementID);
+
+                Object editor;
+                if(element instanceof Book)
+                    editor = new EditBook((Book)element, this.elements);
+                else if(element instanceof Movie)
+                    editor = new EditMovie((Movie)element, this.elements);
+                else if(element instanceof NewsPaper)
+                    editor = new EditNP((NewsPaper)element, this.elements);
+                else
+                    editor = new ElemEdit(element, this.elements);
+
+                ((ElemEdit) editor).run();
+                JInternalFrame element_edit_frame = ((ElemEdit) editor).getFrame();
+                setupNewFrame(element_edit_frame);
+            } catch(NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Id has to be integer!", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch(IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null, "Element with given id does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         } else if(cmd.equals("save_and_exit")){

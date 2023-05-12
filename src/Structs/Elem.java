@@ -8,8 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import Structs.Edit.ElemEdit;
-
 public class Elem implements Serializable {
     private static final long serialVersionUID = 1234L;
     public int id;
@@ -21,13 +19,12 @@ public class Elem implements Serializable {
         return "Object: " + this.id;
     }
 
-    public void Edit(String file_name){
-        ElemEdit editor = new ElemEdit(this, file_name);
-        editor.run();
-    }
-
     public Boolean checkData(){
         return true;
+    }
+
+    public void idReset(){
+        this.id = ("Elem").hashCode();
     }
 
     public static void save(Elem object, String file){

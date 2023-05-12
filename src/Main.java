@@ -24,7 +24,7 @@ public class Main {
         e.addElem(new Book("Goood book", "Good author", 1900, 1));
         e.addElem(new Movie("Star Wars", "George Lucas", "sci-fi", 1977,  2));
         e.addElem(new Book("Solaris", "Stanislaw Lem", 1961, 3));
-        e.addElem(new NewsPaper("Times", -123, 4));
+        e.addElem(new NewsPaper("Times", "12/34/5678", 4));
         for(int i = 0; i < 20; i++)
             e.addElem(new Book("Some Book " + i, "Some Author " + i, 1000 + i));
 

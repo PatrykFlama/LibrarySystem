@@ -3,9 +3,9 @@ package Structs.Elements;
 import Structs.Elem;
 
 public class Book extends Elem {
-    String name;
-    String author;
-    int year;
+    public String name;
+    public String author;
+    public int year;
 
     public Book(){ this(""); }
     public Book(String name){ this(name, ""); }
@@ -22,9 +22,8 @@ public class Book extends Elem {
         return "Book: " + "(" + this.id + ") " + this.name + " by " + this.author + ", " + this.year;
     }
 
-    public void Edit(String file_name){
-        // TODO: BookEdit editor = new BookEdit(this, file_name);
-        // editor.run();
+    public void idReset(){
+        this.id = ("Book"+name).hashCode();
     }
 
     public static Book load(String file){

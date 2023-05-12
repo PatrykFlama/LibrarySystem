@@ -3,13 +3,13 @@ package Structs.Elements;
 import Structs.Elem;
 
 public class NewsPaper extends Elem {
-    String title;
-    int date;
+    public String title;
+    public String date;
 
     public NewsPaper(){ this(""); }
-    public NewsPaper(String title){ this(title, 0); }
-    public NewsPaper(String title, int date){ this(title, date, ("NewsPaper"+title).hashCode()); }
-    public NewsPaper(String title, int date, int id){
+    public NewsPaper(String title){ this(title, ""); }
+    public NewsPaper(String title, String date){ this(title, date, ("NewsPaper"+title).hashCode()); }
+    public NewsPaper(String title, String date, int id){
         super(id);
         this.title = title;
         this.date = date;
@@ -19,9 +19,8 @@ public class NewsPaper extends Elem {
         return "NewsPaper: " + "(" + this.id + ") " + this.title + ", " + this.date;
     }
 
-    public void Edit(String file_name){
-        // TODO: NewsPaperEdit editor = new NewsPaperEdit(this, file_name);
-        // editor.run();
+    public void idReset(){
+        this.id = ("NewsPaper"+title).hashCode();
     }
 
     public static NewsPaper load(String file){
