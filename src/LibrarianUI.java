@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.text.AbstractDocument.Content;
 
 import Structs.Students; 
 
@@ -31,10 +30,6 @@ public class LibrarianUI extends JComponent implements ActionListener {
     }
 
     void setMainContainer(Container container){
-    //     id_field.setMaximumSize(new Dimension(200, 20));
-    //     name_field.setMaximumSize(new Dimension(200, 20));
-    //     term_field.setMaximumSize(new Dimension(200, 20));
-        
         JButton display_students = new JButton("Display students");
         display_students.addActionListener(this);
         display_students.setActionCommand("display_students");
@@ -58,15 +53,18 @@ public class LibrarianUI extends JComponent implements ActionListener {
     }
 
     void setDisplayStudentsContainer(Container container){
-
+        container.add(new JTextArea("dis stud"));
     }
     void setEditStudentContainer(Container container){
+        container.add(new JTextArea("ed stud"));
         
     }
     void setDisplayElementsContainer(Container container){
-
+        container.add(new JTextArea("dis el"));
+        
     }
     void setEditElementContainer(Container container){
+        container.add(new JTextArea("ed el"));
 
     }
 
@@ -76,22 +74,25 @@ public class LibrarianUI extends JComponent implements ActionListener {
             Container content = frame.getContentPane();
             content.removeAll();
             setDisplayStudentsContainer(content);
-        } else if(cmd.equals("display_elements")){
-            Container content = frame.getContentPane();
-            content.removeAll();
-            setDisplayElementsContainer(content);
-        } else if(cmd.equals("edit_student")){
-            Container content = frame.getContentPane();
-            content.removeAll();
-            setEditStudentContainer(content);
-        } else if(cmd.equals("edit_element")){
-            Container content = frame.getContentPane();
-            content.removeAll();
-            setEditElementContainer(content);
         } else if(cmd.equals("back")){
             Container content = frame.getContentPane();
             content.removeAll();
             setMainContainer(content);
+        } else {
+            Container content = frame.getContentPane();
+            content.removeAll();
+            if(cmd.equals("display_elements")){
+                setDisplayElementsContainer(content);
+            } else if(cmd.equals("edit_student")){
+                setEditStudentContainer(content);
+            } else if(cmd.equals("edit_element")){
+                setEditElementContainer(content);
+            }
+
+            JButton back_button = new JButton("Back");
+            back_button.addActionListener(this);
+            back_button.setActionCommand("back");
+            content.add(back_button);
         }
     }
     
