@@ -16,7 +16,7 @@ public class NewsPaper extends Elem {
     }
 
     public String toString(){
-        return "NewsPaper: " + this.title + " (" + this.date + ")";
+        return "NewsPaper: " + "(" + this.id + ") " + this.title + ", " + this.date;
     }
 
     public void Edit(String file_name){

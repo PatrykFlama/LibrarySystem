@@ -19,7 +19,7 @@ public class Book extends Elem {
     }
 
     public String toString(){
-        return "Book: " + this.name + " by " + this.author + " (" + this.year + ")";
+        return "Book: " + "(" + this.id + ") " + this.name + " by " + this.author + ", " + this.year;
     }
 
     public void Edit(String file_name){

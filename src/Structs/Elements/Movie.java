@@ -10,19 +10,19 @@ public class Movie extends Elem {
 
     public Movie(){ this(""); }
     public Movie(String title){ this(title, ""); }
-    public Movie(String title, String genre){ this(title, genre, ""); }
-    public Movie(String title, String genre, String director){ this(title, genre, director, 0); }
-    public Movie(String title, String genre, String director, int year){ this(title, genre, director, year, ("Movie"+title).hashCode()); }
-    public Movie(String title, String genre, String director, int year, int id){
+    public Movie(String title, String director){ this(title, director, ""); }
+    public Movie(String title, String director, String genre){ this(title, director, genre, 0); }
+    public Movie(String title, String director, String genre, int year){ this(title, director, genre, year, ("Movie"+title).hashCode()); }
+    public Movie(String title, String director, String genre, int year, int id){
         super(id);
         this.title = title;
-        this.director = director;
-        this.year = year;
         this.genre = genre;
+        this.year = year;
+        this.director = director;
     }
 
     public String toString(){
-        return "Movie: " + this.title + " by " + this.director + " (" + this.year + ") " + this.genre;
+        return "Movie: " + "(" + this.id + ") " + this.title + " by " + this.director + ", " + this.year + " (" + this.genre + ")";
     }
         
     public void Edit(String file_name){
