@@ -27,24 +27,24 @@ classDiagram
         +void login()
     }
     class LibrarianUI{
-        +Books books
+        +Books elements
         +Students students
 
-        +void addBook()
-        +void removeBook()
-        +void editBook()
+        +void addElement()
+        +void removeElement()
+        +void editElement()
         +void addStudent()
         +void removeStudent()
         +void editStudent()
-        +void showBooks()
+        +void showElements()
         +void showStudents()
         +void editStudent()
     }
     class StudentUI{
         +Student student
 
-        +void showBooks()
-        +void rentBook()
+        +void showElements()
+        +void rentElement()
         +void returnBook()
         +String locateBook()
         +void editAccount()
@@ -64,10 +64,10 @@ classDiagram
         +int id
         +String name
         +int year
-        +HashMap borrowed_books
+        +HashMap borrowed_elements
 
-        +void borrowBook()
-        +void returnBook()
+        +void borrowElement()
+        +void returnElement()
 
         +void saveStudent()
         +Student loadStudent()
