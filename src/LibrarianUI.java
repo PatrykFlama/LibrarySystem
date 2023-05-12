@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import Structs.Student;
 import Structs.Students;
+import Structs.Elems;
 import Structs.Edit.StudentEdit; 
 
 
@@ -15,19 +16,23 @@ public class LibrarianUI extends JComponent implements ActionListener {
 
     String filename;
     Students students;
-    JInternalFrame frame;
-    Container content;
+    Elems elements;
 
     JTextField currentStudentID;
+    JTextField currentElementID;
 
+    JInternalFrame frame;
+    Container content;
     JFrame mainFrame;
     JDesktopPane desktop;
 
     public LibrarianUI(String filename){
-        this.students = Students.load(filename);
+        this.students = Students.load(filename+"students.txt");
+        this.elements = Elems.load(filename+"elements.txt");
         this.filename = filename;
 
         currentStudentID = new JTextField();
+        currentElementID = new JTextField();
 
         mainFrame = new JFrame("Library Management System");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +41,6 @@ public class LibrarianUI extends JComponent implements ActionListener {
         mainFrame.setContentPane(desktop);
         mainFrame.setSize(500, 500);
         mainFrame.setVisible(true);
-        
     }
 
     public void run(){
@@ -83,7 +87,13 @@ public class LibrarianUI extends JComponent implements ActionListener {
     }
 
     void setDisplayStudentsContainer(){
-        content.add(new JTextArea("dis stud"));
+        // TODO some kind of scroll bar
+        JButton back_button = new JButton("Back");
+        back_button.addActionListener(this);
+        back_button.setActionCommand("main_menu");
+        
+        content.add(back_button);
+        content.add(new JTextArea(students.toString()));
     }
     void setEditStudentContainer(){
         content.add(new JLabel("Student ID"));
@@ -94,10 +104,21 @@ public class LibrarianUI extends JComponent implements ActionListener {
         content.add(display_student);
     }
     void setDisplayElementsContainer(){
-        content.add(new JTextArea("dis el"));
+        // TODO some kind of scroll bar
+        JButton back_button = new JButton("Back");
+        back_button.addActionListener(this);
+        back_button.setActionCommand("main_menu");
+        
+        content.add(back_button);
+        content.add(new JTextArea(elements.toString()));
     }
     void setEditElementContainer(){
-        content.add(new JTextArea("ed el"));
+        content.add(new JLabel("Element ID"));
+        content.add(currentElementID);
+        JButton display_element = new JButton("Edit element");
+        display_element.addActionListener(this);
+        display_element.setActionCommand("element_edit_window");
+        content.add(display_element);
     }
 
     public void actionPerformed(ActionEvent event){

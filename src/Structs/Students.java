@@ -16,10 +16,8 @@ public class Students implements Serializable{
     }
 
     public void addStudent(Student student){
-        if(student != null && student.checkData()){
+        if(student != null && student.checkData())
             this.students.put(student.id, student);
-            System.err.println("Added student " + student.name + " with id " + student.id);
-        }
     }
 
     public void removeStudent(int student_id){

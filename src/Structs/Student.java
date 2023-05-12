@@ -49,7 +49,7 @@ public class Student implements Serializable {
     }
 
     public String toString(){
-        String result = "Student: " + this.name + " (" + this.term + ")\n";
+        String result = "(" + this.id + ") " + this.name + ", term " + this.term;
         for (Integer id : this.borrowed_elems.keySet()){
             result += "    " + id + ": " + this.borrowed_elems.get(id) + "\n";
         }
