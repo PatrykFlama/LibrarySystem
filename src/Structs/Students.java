@@ -23,12 +23,13 @@ public class Students implements Serializable{
         this.students.remove(student_id);
     }
 
-    public Student getStudent(int student_id){
+    public Student getStudent(int student_id) throws IllegalArgumentException {
+        if(!this.students.containsKey(student_id)) throw new IllegalArgumentException("Student with id " + student_id + " does not exist");
         return this.students.get(student_id);
     }
 
-    public void editStudent(int student_id, String file_name){
-        Student student = this.students.get(student_id);
+    public void editStudent(int student_id){
+        Student student = this.getStudent(student_id);
         student.Edit();
         if(student != null) this.students.put(student_id, student);
     }
