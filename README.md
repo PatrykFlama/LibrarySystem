@@ -7,81 +7,106 @@ Student can rent/return books (and other), search for them and manage his accoun
 More features will be added as needed.  
 
 ## Class dependency graph
+\+ for public   
+\- for private    
+\# for protected  
+\* for static  
+\~ for UI functionallity
+
 ```mermaid
 classDiagram
     MainUI --> LibrarianUI : login
     MainUI --> StudentUI : login
+
     LibrarianUI --> Students
-    LibrarianUI --> StudentEdit : editStudent
+    LibrarianUI --> Elems
+    LibrarianUI --> ElemEdit
+    LibrarianUI --> StudentEdit
+
     Students --> Student
     StudentEdit --> Student
     StudentUI --> Elems
-    LibrarianUI --> Elems
     Elems --> Elem
+
     Elem --|> Book
     Elem --|> NewsPaper
     Elem --|> Movie
 
+    ElemEdit --|> EditBook
+    ElemEdit --|> EditMovie
+    ElemEdit --|> EditNewsPaper
+
+    ElemEdit --> Elem
+    EditBook --> Book
+    EditMovie --> Movie
+    EditNewsPaper --> NewsPaper
+
     class MainUI{
-        +void main(String[] args)
-        +void login()
+        +void main()
+        -void login()
     }
     class LibrarianUI{
-        +Books elements
-        +Students students
+        -Books elements
+        -Students students
 
-        +void addElement()
-        +void removeElement()
-        +void editElement()
-        +void addStudent()
-        +void removeStudent()
-        +void editStudent()
-        +void showElements()
-        +void showStudents()
-        +void editStudent()
+        +void run()
+        -void set_XXX_Container()
+        +void actionPerformed()
+        -void setupNewFrame()
+        +bool isRunning()
+
+        ~showStudents()
+        ~showElems()
+        ~editStudent()
+        ~editElem()
+        ~saveAndExit()
     }
     class StudentUI{
-        +Student student
-
-        +void showElements()
-        +void rentElement()
-        +void returnBook()
-        +String locateBook()
-        +void editAccount()
+        TODO
     }
     class Students{
-        +HashMap students
+        -HashMap students
 
         +void addStudent()
         +void removeStudent()
-        +void editStudent()
-        +void findStudent()
+        +void replaceStudent()
 
-        +void saveStudents()
-        +Students loadStudents()
+        +Student getStudent()
+        +String toString()
+
+        +void save()
+        +Students load()
     }
     class Student{
         +int id
         +String name
-        +int year
-        +HashMap borrowed_elements
+        +int term
+        -HashMap borrowed_elements
 
-        +void borrowElement()
-        +void returnElement()
+        +String toString()
+        +bool checkData()
+        +void idReset()
 
-        +void saveStudent()
-        +Student loadStudent()
+        +void save()
+        +Student load()
     }
     class StudentEdit{
-        +void editStudent()
+        -Student student
+        -Students students
+        -int oldID
+
+        +void run()
+        +JInternalFrame getFrame()
+        -void setContainer()
+        +void actionPerformed()        
     }
     class Elems{
-        +HashMap Elems_map
+        -HashMap Elems_map
 
         +void addElem()
         +void removeElem()
-        +void getElem()
-        +void editElem()
+        +void replaceElem()
+        +Elem getElem()
         +String toString()
 
         +void save()
@@ -91,6 +116,8 @@ classDiagram
         +int id
 
         +String toString()
+        +bool checkData()
+        +void idReset()
 
         +void save()
         +Elem load()
@@ -99,20 +126,19 @@ classDiagram
         +String name
         +String author
         +int year
-        +String genre
 
         +String toString()
+        +void idReset()
 
-        +void save()
         +Book load()
     }
     class NewsPaper{
         +String title
-        +int date
+        +String date
 
         +String toString()
+        +void idReset()
 
-        +void save()
         +NewsPaper load()
     }
     class Movie{
@@ -122,14 +148,48 @@ classDiagram
         +String genre
 
         +String toString()
+        +void idReset()
 
-        +void save()
         +Movie load()
+    }
+    class ElemEdit{
+        -Elem elem
+        -Elems elems
+        -int oldID
+
+        +void run()
+        +JInternalFrame getFrame()
+        -void setContainer()
+        #void setOtherFieldsContainer()
+        +void actionPerformed()
+        #void assignOtherFields()
+    }
+    class EditBook{
+        -Book book
+
+        +void run()
+        #void setOtherFieldsContainer()
+        #void assignOtherFields()
+    }
+    class EditMovie{
+        -Movie movie
+
+        +void run()
+        #void setOtherFieldsContainer()
+        #void assignOtherFields()
+    }
+    class EditNewsPaper{
+        -NewsPaper newsPaper
+
+        +void run()
+        #void setOtherFieldsContainer()
+        #void assignOtherFields()
     }
 ```
 ___
 ## TODO
 * add time
+* create elements,students in ui
 ___
 ## Stuff
 ### Wymagania

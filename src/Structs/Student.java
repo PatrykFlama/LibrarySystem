@@ -26,28 +26,6 @@ public class Student implements Serializable {
         this.borrowed_elems = new HashMap<Integer, Integer>();
     }
 
-    public void borrowElem(int id){
-        Integer book_name = this.borrowed_elems.get(id);
-        if(book_name == null){
-            this.borrowed_elems.put(id, 1);
-        } else {
-            this.borrowed_elems.put(id, book_name + 1);
-        }
-    }
-
-    public void returnElem(int id) throws Exception {
-        Integer book_name = this.borrowed_elems.get(id);
-        if(book_name == null){
-            throw new Exception("You have not rented this book.");
-        } else {
-            if(book_name == 1){
-                this.borrowed_elems.remove(id);
-            } else {
-                this.borrowed_elems.put(id, book_name - 1);
-            }
-        }
-    }
-
     public String toString(){
         String result = "(" + this.id + ") " + this.name + ", term " + this.term;
         for (Integer id : this.borrowed_elems.keySet()){
