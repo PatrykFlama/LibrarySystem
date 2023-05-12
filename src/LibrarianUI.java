@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyVetoException;
+
 import javax.swing.*;
 
 import Structs.Student;
@@ -8,6 +10,9 @@ import Structs.Edit.StudentEdit;
 
 
 public class LibrarianUI extends JComponent implements ActionListener {
+    static int openFrameCount = 0;
+    static final int xOffset = 30, yOffset = 30;
+
     String filename;
     Students students;
     JInternalFrame frame;
@@ -28,7 +33,7 @@ public class LibrarianUI extends JComponent implements ActionListener {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLocationRelativeTo(null);
         desktop = new JDesktopPane();
-        mainFrame.add(desktop);
+        mainFrame.setContentPane(desktop);
         mainFrame.setSize(500, 500);
         mainFrame.setVisible(true);
         
@@ -95,8 +100,8 @@ public class LibrarianUI extends JComponent implements ActionListener {
         content.add(new JTextArea("ed el"));
     }
 
-    public void actionPerformed(ActionEvent e){
-        String cmd = e.getActionCommand();
+    public void actionPerformed(ActionEvent event){
+        String cmd = event.getActionCommand();
 
         if(cmd.equals("main_menu")){
             content.removeAll();
@@ -109,13 +114,13 @@ public class LibrarianUI extends JComponent implements ActionListener {
                 StudentEdit editor = new StudentEdit(student, this.students);
                 editor.run();
                 JInternalFrame student_edit_frame = editor.getFrame();
-
-                desktop.add(student_edit_frame);
-            } catch(NumberFormatException except) {
+                setupNewFrame(student_edit_frame);
+            } catch(NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Id has to be integer!", "Error", JOptionPane.ERROR_MESSAGE);
-            } catch(IllegalArgumentException except) {
+            } catch(IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(null, "Student with given id does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
             }
+
         } else if(cmd.equals("save_and_exit")){
             Students.save(students, this.filename);
             this.kill();
@@ -141,6 +146,15 @@ public class LibrarianUI extends JComponent implements ActionListener {
 
         content.validate();
         content.repaint();
+    }
+
+    void setupNewFrame(JInternalFrame frame){
+        openFrameCount = (openFrameCount + 1) % 10;
+        frame.setLocation(xOffset*openFrameCount, yOffset*openFrameCount);
+        desktop.add(frame);
+        try{
+            frame.setSelected(true);
+        } catch(PropertyVetoException e){}
     }
     
     public Boolean isRunning(){
