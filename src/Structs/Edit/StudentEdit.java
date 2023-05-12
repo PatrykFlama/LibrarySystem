@@ -3,6 +3,7 @@ package Structs.Edit;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
 import Structs.Student; 
 
 
@@ -65,24 +66,27 @@ public class StudentEdit extends JComponent implements ActionListener {
     public void actionPerformed(ActionEvent e){
         String cmd = e.getActionCommand();
         if(cmd.equals("save")){
-            this.obj.id = Integer.parseInt(this.id_field.getText());
-            this.obj.name = this.name_field.getText();
-            this.obj.term = Integer.parseInt(this.term_field.getText());
+            try {
+                this.obj.id = Integer.parseInt(this.id_field.getText());
+                this.obj.name = this.name_field.getText();
+                this.obj.term = Integer.parseInt(this.term_field.getText());
+            } catch (NumberFormatException except) {
+                JOptionPane.showMessageDialog(null, "Id and term have to be integer!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
             
             if(this.obj.checkData())
                 // Student.save(this.obj, this.file_name);
                 setVisible(false);
             else
                 JOptionPane.showMessageDialog(null, "Invalid data!", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if(cmd.equals("id_reset")){
-            this.obj.name = this.name_field.getText();
-            this.obj.idReset();
-            this.id_field.setText(Integer.toString(this.obj.id));
+            } else if(cmd.equals("id_reset")){
+                this.obj.idReset();
+                this.id_field.setText(Integer.toString(this.obj.id));
+            }
         }
-    }
-
-    public Boolean isRunning(){
-        return frame.isVisible();
+        
+        public Boolean isRunning(){
+            return frame.isVisible();
     }
 
     public void kill(){
