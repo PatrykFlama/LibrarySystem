@@ -23,7 +23,7 @@ public class StudentEdit extends JComponent implements ActionListener {
         this.term_field = new JTextField(Integer.toString(this.obj.term));
     }
 
-    public Student run(){
+    public void run(){
         frame = new JFrame("Student Editor");
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setSize(500, 500);
@@ -35,7 +35,6 @@ public class StudentEdit extends JComponent implements ActionListener {
         
         frame.pack();
         frame.setVisible(true);
-        return this.obj;
     }
 
     void setContainer(Container container){
