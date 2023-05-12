@@ -1,5 +1,4 @@
 package Structs;
-import Structs.Edit.StudentEdit;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
+
 
 public class Student implements Serializable {
     private static final long serialVersionUID = 1234L;
@@ -56,24 +56,12 @@ public class Student implements Serializable {
         return result;
     }
 
-    public Boolean checkData(){
+    public Boolean checkData(){     // true if data is correct
         return !(this.name.equals("") || this.term < 0);
     }
 
     public void idReset(){
         this.id = ("Student"+name).hashCode();
-    }
-
-    public void Edit(){ 
-        StudentEdit editor = new StudentEdit(this);
-        editor.run();
-        while(editor.isRunning()){System.err.print("");}    //! without this print statement, the program wont exit the loop
-        editor.kill();
-
-        if(this.checkData())
-            System.err.println("Student data saved!");
-        else
-            System.err.println("Student data is invalid, not saved!");
     }
 
     public static void save(Student object, String file){

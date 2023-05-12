@@ -7,17 +7,6 @@ public class Main {
         testLibrarianUI();
     }
 
-    static void testStudent(){
-        Student s = Student.load("test.txt");
-        s.borrowElem(1);
-        s.borrowElem(1);
-        s.borrowElem(1);
-        s.borrowElem(2);
-        s.Edit();
-        Student.save(s, "test.txt");
-        System.err.println(s);
-    }
-
     static void testLibrarianUI(){
         Students s = new Students();
         s.addStudent(new Student("Jan Kowalski", 3, 1));

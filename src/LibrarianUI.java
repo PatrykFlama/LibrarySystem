@@ -2,35 +2,51 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import Structs.Students; 
+import Structs.Student;
+import Structs.Students;
+import Structs.Edit.StudentEdit; 
 
 
 public class LibrarianUI extends JComponent implements ActionListener {
     String filename;
     Students students;
-    JFrame frame;
+    JInternalFrame frame;
     Container content;
 
     JTextField currentStudentID;
+
+    JFrame mainFrame;
+    JDesktopPane desktop;
 
     public LibrarianUI(String filename){
         this.students = Students.load(filename);
         this.filename = filename;
 
         currentStudentID = new JTextField();
+
+        mainFrame = new JFrame("Library Management System");
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setLocationRelativeTo(null);
+        desktop = new JDesktopPane();
+        mainFrame.add(desktop);
+        mainFrame.setSize(500, 500);
+        mainFrame.setVisible(true);
+        
     }
 
     public void run(){
-        frame = new JFrame("Logged in as: Librarian");
+        frame = new JInternalFrame("Logged in as: Librarian", true, true, true, true);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setSize(500, 500);
-        frame.setLocationRelativeTo(null);
         
         content = frame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         actionPerformed(new ActionEvent(this, 0, "main_menu"));
         
+        frame.pack();
         frame.setVisible(true);
+
+        desktop.add(frame);
     }
 
     void setMainContainer(){
@@ -65,7 +81,7 @@ public class LibrarianUI extends JComponent implements ActionListener {
         content.add(new JTextArea("dis stud"));
     }
     void setEditStudentContainer(){
-        content.add(new JTextArea("Student ID"));
+        content.add(new JLabel("Student ID"));
         content.add(currentStudentID);
         JButton display_student = new JButton("Edit student");
         display_student.addActionListener(this);
@@ -87,7 +103,14 @@ public class LibrarianUI extends JComponent implements ActionListener {
             setMainContainer();
         } else if(cmd.equals("student_edit_window")){
             try{
-                students.editStudent(Integer.parseInt(currentStudentID.getText()));
+                Integer studentID = Integer.parseInt(currentStudentID.getText());
+                Student student = students.getStudent(studentID);
+
+                StudentEdit editor = new StudentEdit(student, this.students);
+                editor.run();
+                JInternalFrame student_edit_frame = editor.getFrame();
+
+                desktop.add(student_edit_frame);
             } catch(NumberFormatException except) {
                 JOptionPane.showMessageDialog(null, "Id has to be integer!", "Error", JOptionPane.ERROR_MESSAGE);
             } catch(IllegalArgumentException except) {
@@ -118,7 +141,6 @@ public class LibrarianUI extends JComponent implements ActionListener {
 
         content.validate();
         content.repaint();
-        frame.pack();
     }
     
     public Boolean isRunning(){

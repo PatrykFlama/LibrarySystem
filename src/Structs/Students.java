@@ -16,22 +16,24 @@ public class Students implements Serializable{
     }
 
     public void addStudent(Student student){
-        this.students.put(student.id, student);
+        if(student != null && student.checkData()){
+            this.students.put(student.id, student);
+            System.err.println("Added student " + student.name + " with id " + student.id);
+        }
     }
 
     public void removeStudent(int student_id){
         this.students.remove(student_id);
     }
 
+    public void replaceStudent(int student_old_id, Student student){
+        this.students.remove(student_old_id);
+        this.students.put(student.id, student);
+    }
+
     public Student getStudent(int student_id) throws IllegalArgumentException {
         if(!this.students.containsKey(student_id)) throw new IllegalArgumentException("Student with id " + student_id + " does not exist");
         return this.students.get(student_id);
-    }
-
-    public void editStudent(int student_id){
-        Student student = this.getStudent(student_id);
-        student.Edit();
-        if(student != null) this.students.put(student_id, student);
     }
 
     public String toString(){

@@ -1,11 +1,8 @@
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 import Structs.Students;
 import Structs.Student;
-import Structs.Edit.StudentEdit; 
-import Structs.Elems;
 
 public class StudentUI extends JComponent implements ActionListener {
     Student obj;
@@ -49,7 +46,7 @@ public class StudentUI extends JComponent implements ActionListener {
     // }
 
     public void actionPerformed(ActionEvent e){
-        String cmd = e.getActionCommand();
+        // String cmd = e.getActionCommand();
         // if(cmd.equals("save")){
         //     this.obj.id = Integer.parseInt(this.id_field.getText());
         //     this.obj.name = this.name_field.getText();
