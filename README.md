@@ -12,7 +12,7 @@ classDiagram
     MainUI --> LibrarianUI : login
     MainUI --> StudentUI : login
     LibrarianUI --> Students
-    StudentUI --> StudentEdit : editAccount
+    LibrarianUI --> StudentEdit : editStudent
     Students --> Student
     StudentEdit --> Student
     StudentUI --> Elems
@@ -38,6 +38,7 @@ classDiagram
         +void editStudent()
         +void showBooks()
         +void showStudents()
+        +void editStudent()
     }
     class StudentUI{
         +Student student
