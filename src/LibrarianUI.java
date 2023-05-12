@@ -15,6 +15,8 @@ public class LibrarianUI extends JComponent implements ActionListener {
     static final int xOffset = 30, yOffset = 30;
 
     String filename;
+    String students_filename;
+    String elements_filename;
     Students students;
     Elems elements;
 
@@ -27,9 +29,12 @@ public class LibrarianUI extends JComponent implements ActionListener {
     JDesktopPane desktop;
 
     public LibrarianUI(String filename){
-        this.students = Students.load(filename+"students.txt");
-        this.elements = Elems.load(filename+"elements.txt");
         this.filename = filename;
+        this.students_filename = filename+"students.txt";
+        this.elements_filename = filename+"elements.txt";
+
+        this.students = Students.load(students_filename);
+        this.elements = Elems.load(elements_filename);
 
         currentStudentID = new JTextField();
         currentElementID = new JTextField();
@@ -143,8 +148,9 @@ public class LibrarianUI extends JComponent implements ActionListener {
             }
 
         } else if(cmd.equals("save_and_exit")){
-            Students.save(students, this.filename);
-            this.kill();
+            Students.save(students, students_filename);
+            Elems.save(elements, elements_filename);
+            frame.dispose();
         }
         else {
             Container content = frame.getContentPane();
@@ -180,9 +186,5 @@ public class LibrarianUI extends JComponent implements ActionListener {
     
     public Boolean isRunning(){
         return frame.isVisible();
-    }
-
-    public void kill(){
-        frame.dispose();
     }
 }

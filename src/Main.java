@@ -34,7 +34,6 @@ public class Main {
         LibrarianUI lUi = new LibrarianUI("testlui");
         lUi.run();
         while(lUi.isRunning()) {System.err.print("");}
-        lUi.kill();
     }
 }
 
