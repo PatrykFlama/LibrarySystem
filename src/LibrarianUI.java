@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.text.AbstractDocument.Content;
 
 import Structs.Students; 
 
@@ -23,64 +24,82 @@ public class LibrarianUI extends JComponent implements ActionListener {
         
         Container content = frame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-        setContainer(content);
+        setMainContainer(content);
         
         frame.pack();
         frame.setVisible(true);
     }
 
-    void setContainer(Container container){
+    void setMainContainer(Container container){
     //     id_field.setMaximumSize(new Dimension(200, 20));
     //     name_field.setMaximumSize(new Dimension(200, 20));
     //     term_field.setMaximumSize(new Dimension(200, 20));
+        
+        JButton display_students = new JButton("Display students");
+        display_students.addActionListener(this);
+        display_students.setActionCommand("display_students");
 
         JButton edit_student = new JButton("Edit Student");
         edit_student.addActionListener(this);
         edit_student.setActionCommand("edit_student");
         
-        JButton save_button = new JButton("Save");
-        save_button.addActionListener(this);
-        save_button.setActionCommand("save");
+        JButton display_elements = new JButton("Display elements");
+        display_elements.addActionListener(this);
+        display_elements.setActionCommand("display_elements");
         
-    //     container.add(new JLabel("Students ID:"));
-    //     container.add(this.id_field);
-    //     container.add(id_reset);
-    //     container.add(new JLabel("Name:"));
-    //     container.add(this.name_field);
-    //     container.add(new JLabel("Term:"));
-    //     container.add(this.term_field);
-
-        container.add(save_button);
+        JButton edit_element = new JButton("Edit element");
+        edit_element.addActionListener(this);
+        edit_element.setActionCommand("edit_element");
+        
+        container.add(display_students);
         container.add(edit_student);
+        container.add(display_elements);
+        container.add(edit_element);
+    }
+
+    void setDisplayStudentsContainer(Container container){
+
+    }
+    void setEditStudentContainer(Container container){
+        
+    }
+    void setDisplayElementsContainer(Container container){
+
+    }
+    void setEditElementContainer(Container container){
+
     }
 
     public void actionPerformed(ActionEvent e){
-    //     String cmd = e.getActionCommand();
-    //     if(cmd.equals("save")){
-    //         try {
-    //             this.obj.id = Integer.parseInt(this.id_field.getText());
-    //             this.obj.name = this.name_field.getText();
-    //             this.obj.term = Integer.parseInt(this.term_field.getText());
-    //         } catch (NumberFormatException except) {
-    //             JOptionPane.showMessageDialog(null, "Id and term have to be integer!", "Error", JOptionPane.ERROR_MESSAGE);
-    //         }
-            
-    //         if(this.obj.checkData())
-    //             // Students.save(this.obj, this.file_name);
-    //             setVisible(false);
-    //         else
-    //             JOptionPane.showMessageDialog(null, "Invalid data!", "Error", JOptionPane.ERROR_MESSAGE);
-        // } else if(cmd.equals("id_reset")){
-        //     this.obj.idReset();
-        //     this.id_field.setText(Integer.toString(this.obj.id));
-        // }
+        String cmd = e.getActionCommand();
+        if(cmd.equals("display_students")){
+            Container content = frame.getContentPane();
+            content.removeAll();
+            setDisplayStudentsContainer(content);
+        } else if(cmd.equals("display_elements")){
+            Container content = frame.getContentPane();
+            content.removeAll();
+            setDisplayElementsContainer(content);
+        } else if(cmd.equals("edit_student")){
+            Container content = frame.getContentPane();
+            content.removeAll();
+            setEditStudentContainer(content);
+        } else if(cmd.equals("edit_element")){
+            Container content = frame.getContentPane();
+            content.removeAll();
+            setEditElementContainer(content);
+        } else if(cmd.equals("back")){
+            Container content = frame.getContentPane();
+            content.removeAll();
+            setMainContainer(content);
+        }
     }
     
     public Boolean isRunning(){
         return frame.isVisible();
     }
 
-    // public void kill(){
-    //     frame.dispose();
-    // }
+    public void kill(){
+        frame.dispose();
+    }
 }
