@@ -9,10 +9,11 @@ import Structs.Elements.Movie;
 public class Main {
     // TODO: manage login and direct to lib/student UI
     public static void main(String[] args) {
+        // regenTestData();
         testLibrarianUI();
     }
 
-    static void testLibrarianUI(){
+    static void regenTestData(){
         Students s = new Students();
         s.addStudent(new Student("Jan Kowalski", 3, 1));
         s.addStudent(new Student("Wieslaw Paleta", 0, 2));
@@ -28,10 +29,12 @@ public class Main {
         for(int i = 0; i < 20; i++)
             e.addElem(new Book("Some Book " + i, "Some Author " + i, 1000 + i));
 
-        Elems.save(e, "testluielements.txt");
-        Students.save(s, "testluistudents.txt");
+        Elems.save(e, "elements.txt");
+        Students.save(s, "students.txt");
+    }
 
-        LibrarianUI lUi = new LibrarianUI("testlui");
+    static void testLibrarianUI(){
+        LibrarianUI lUi = new LibrarianUI("LibUI.txt");
         lUi.run();
         while(lUi.isRunning()) {System.err.print("");}
     }

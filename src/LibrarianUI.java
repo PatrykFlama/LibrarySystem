@@ -20,7 +20,7 @@ public class LibrarianUI extends JComponent implements ActionListener {
     static int openFrameCount = 0;
     static final int xOffset = 30, yOffset = 30;
 
-    String filename;
+    String filename;        //? as for now - trash
     String students_filename;
     String elements_filename;
     Students students;
@@ -36,8 +36,8 @@ public class LibrarianUI extends JComponent implements ActionListener {
 
     public LibrarianUI(String filename){
         this.filename = filename;
-        this.students_filename = filename+"students.txt";
-        this.elements_filename = filename+"elements.txt";
+        this.students_filename = "students.txt";
+        this.elements_filename = "elements.txt";
 
         this.students = Students.load(students_filename);
         this.elements = Elems.load(elements_filename);
