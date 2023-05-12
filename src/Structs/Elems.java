@@ -1,8 +1,10 @@
 package Structs;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -39,8 +41,16 @@ public class Elems implements Serializable{
     }
 
     public static void save(Elems object, String file){
-        Elems.save(object, file);
-    }
+        try{
+            FileOutputStream fileOutput = new FileOutputStream(file);
+            ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
+
+            objectOutput.writeObject(object);
+            objectOutput.close();
+            fileOutput.close();
+        } catch (IOException e){
+            System.err.println("Couldn't save elements!");
+        }    }
 
     public static Elems load(String file){
         try {
