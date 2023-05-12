@@ -8,10 +8,10 @@ public class Book extends Elem {
     int year;
 
     public Book(){ this(""); }
-    public Book(String name){ this(name, ("Book"+name).hashCode()); }
-    public Book(String name, int id){ this(name, id, ""); }
-    public Book(String name, int id, String author){ this(name, id, author, 0); }
-    public Book(String name, int id, String author, int year){
+    public Book(String name){ this(name, ""); }
+    public Book(String name, String author){ this(name, author, 0); }
+    public Book(String name, String author, int year){ this(name, author, year, ("Book"+name).hashCode()); }
+    public Book(String name, String author, int year, int id){
         super(id);
         this.name = name;
         this.author = author;

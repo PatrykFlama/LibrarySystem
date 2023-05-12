@@ -8,12 +8,12 @@ public class Movie extends Elem {
     int year;
     String genre;
 
-    public Movie(){ this("", ""); }
-    public Movie(String title){ this(title, "", ("Movie"+title).hashCode()); }
-    public Movie(String title, String genre){ this(title, genre, 0); }
-    public Movie(String title, String genre, int id){ this(title, genre, id, ""); }
-    public Movie(String title, String genre, int id, String director){ this(title, genre, id, director, 0); }
-    public Movie(String title, String genre, int id, String director, int year){
+    public Movie(){ this(""); }
+    public Movie(String title){ this(title, ""); }
+    public Movie(String title, String genre){ this(title, genre, ""); }
+    public Movie(String title, String genre, String director){ this(title, genre, director, 0); }
+    public Movie(String title, String genre, String director, int year){ this(title, genre, director, year, ("Movie"+title).hashCode()); }
+    public Movie(String title, String genre, String director, int year, int id){
         super(id);
         this.title = title;
         this.director = director;

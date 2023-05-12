@@ -7,9 +7,9 @@ public class NewsPaper extends Elem {
     int date;
 
     public NewsPaper(){ this(""); }
-    public NewsPaper(String title){ this(title, ("NewsPaper"+title).hashCode()); }
-    public NewsPaper(String title, int id){ this(title, id, 0); }
-    public NewsPaper(String title, int id, int date){
+    public NewsPaper(String title){ this(title, 0); }
+    public NewsPaper(String title, int date){ this(title, date, ("NewsPaper"+title).hashCode()); }
+    public NewsPaper(String title, int date, int id){
         super(id);
         this.title = title;
         this.date = date;
