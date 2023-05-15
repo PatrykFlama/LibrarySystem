@@ -17,6 +17,7 @@ Application starts from a login screen, where user can log in as librarian or st
 classDiagram
     MainUI --> LibrarianUI : login
     MainUI --> StudentUI : login
+    MainUI --> Students
 
     LibrarianUI --> Students
     LibrarianUI --> Elems
@@ -26,6 +27,7 @@ classDiagram
     Students --> Student
     StudentEdit --> Student
     StudentUI --> Elems
+    StudentUI --> Student
     Elems --> Elem
 
     Elem --|> Book
