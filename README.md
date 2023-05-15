@@ -59,7 +59,6 @@ classDiagram
         -void set_XXX_Container()
         +void actionPerformed()
         -void setupNewFrame()
-        +bool isRunning()
 
         ~showStudents()
         ~showElems()
@@ -73,7 +72,6 @@ classDiagram
         +void run()
         -void set_XXX_Container()
         +void actionPerformed()
-        +bool isRunning()
 
         ~showElems()
         ~searchElems()
