@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyVetoException;
-
 import javax.swing.*;
 
 import Structs.Student;
@@ -20,7 +19,6 @@ public class LibrarianUI extends JComponent implements ActionListener {
     static int openFrameCount = 0;
     static final int xOffset = 30, yOffset = 30;
 
-    String filename;        //? as for now - trash
     String students_filename;
     String elements_filename;
     Students students;
@@ -31,11 +29,10 @@ public class LibrarianUI extends JComponent implements ActionListener {
 
     JInternalFrame frame;
     Container content;
-    JFrame mainFrame;
     JDesktopPane desktop;
 
-    public LibrarianUI(String filename){
-        this.filename = filename;
+    public LibrarianUI(JDesktopPane desktop){
+        this.desktop = desktop;
         this.students_filename = "students.txt";
         this.elements_filename = "elements.txt";
 
@@ -44,17 +41,9 @@ public class LibrarianUI extends JComponent implements ActionListener {
 
         currentStudentID = new JTextField();
         currentElementID = new JTextField();
-
-        mainFrame = new JFrame("Library Management System");
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setLocationRelativeTo(null);
-        desktop = new JDesktopPane();
-        mainFrame.setContentPane(desktop);
-        mainFrame.setSize(500, 500);
-        mainFrame.setVisible(true);
     }
 
-    public void run(){
+    public void run(int dx, int dy){
         frame = new JInternalFrame("Logged in as: Librarian", true, true, true, true);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setSize(500, 500);
@@ -64,9 +53,12 @@ public class LibrarianUI extends JComponent implements ActionListener {
         actionPerformed(new ActionEvent(this, 0, "main_menu"));
         
         frame.pack();
+        frame.setLocation(dx, dy);
         frame.setVisible(true);
-
         desktop.add(frame);
+        try{
+            frame.setSelected(true);
+        } catch(PropertyVetoException e){}
     }
 
     void setMainContainer(){
@@ -212,9 +204,5 @@ public class LibrarianUI extends JComponent implements ActionListener {
         try{
             frame.setSelected(true);
         } catch(PropertyVetoException e){}
-    }
-    
-    public Boolean isRunning(){
-        return frame.isVisible();
     }
 }
