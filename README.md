@@ -12,6 +12,7 @@ Application starts from a login screen, where user can log in as librarian or st
 \* for static  
 \~ for UI functionallity
 
+<!-- TODO StudentUI -->
 ```mermaid
 classDiagram
     MainUI --> LibrarianUI : login
@@ -41,8 +42,12 @@ classDiagram
     EditNewsPaper --> NewsPaper
 
     class MainUI{
+        -HashMap loginCredentials
+
         +void main()
-        -void login()
+        ~void loginUI()
+        -bool checkLogin()
+        -void setDisplay()
     }
     class LibrarianUI{
         -Books elements
@@ -61,7 +66,18 @@ classDiagram
         ~saveAndExit()
     }
     class StudentUI{
-        TODO
+        -Student student
+
+        +void run()
+        -void set_XXX_Container()
+        +void actionPerformed()
+        +bool isRunning()
+
+        ~showElems()
+        ~searchElems()
+        ~borrowElem()
+        ~returnElem()
+        ~saveAndExit()
     }
     class Students{
         -HashMap students
