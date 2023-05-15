@@ -1,10 +1,9 @@
 # [Library Sysyem](https://github.com/PatrykFlama/LibrarySysyem)
-System for manging a university library. smth smth smth. blah blah blah.  
-How it works:  
-User can log in as librarian or as student.  
-Librarian can add/remove/edit books, movies, NewsPapers, other library stuff and students.  
-Student can rent/return books (and other), search for them and manage his account.  
-More features will be added as needed.  
+System for manging a university library, that can be accessed by students and librarian (administrator). Librarian can add/remove/edit books, movies, news papers and manage students. Student can rent/return books (and other), search for them. The data is stored in files.    
+More features will be added  as needed.
+
+## How it works (roughly)
+Application starts from a login screen, where user can log in as librarian or student with given id. After logging in, user is presented with a main screen, where he can choose what he wants to do. Librarian has options to add/remove/edit/list books, movies, news papers (refered later as elements) and manage students. Student can rent/return elements, search for them. The data is stored in files.
 
 ## Class dependency graph
 \+ for public   
@@ -187,6 +186,11 @@ classDiagram
     }
 ```
 ___
+<!--! end of oficial part of readme -->
+
+<details>
+<summary> Stuff </summary>
+
 ## TODO
 * add time
 * create elements,students in ui
@@ -311,3 +315,5 @@ Dodatkowo po podziemiach mogą się błąkać w sposób losowy różne stwory. D
 Wstęp
 
 Zadanie polega na implementacji gry planszowej. Przykłady różnych gier można znaleźć np. na portalu https://www.zasadygry.pl.
+
+</details>
