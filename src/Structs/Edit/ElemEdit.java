@@ -79,6 +79,8 @@ public class ElemEdit extends JComponent implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Invalid data!", "Error", JOptionPane.ERROR_MESSAGE);
         } else if(cmd.equals("id_reset")){
             this.element.idReset();
+            elements.replaceElem(this.oldID, this.element);
+            this.oldID = this.element.id;
             this.id_field.setText(Integer.toString(this.element.id));
         }
     }
