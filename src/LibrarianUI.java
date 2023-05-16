@@ -18,9 +18,9 @@ import Structs.Edit.StudentEdit;
 public class LibrarianUI extends JComponent implements ActionListener {
     static int openFrameCount = 0;
     static final int xOffset = 30, yOffset = 30;
+    static final String students_filename = "students.txt";     //TODO escalate name
+    static final String elements_filename = "elements.txt";
 
-    String students_filename;
-    String elements_filename;
     Students students;
     Elems elements;
 
@@ -33,8 +33,6 @@ public class LibrarianUI extends JComponent implements ActionListener {
 
     public LibrarianUI(JDesktopPane desktop){
         this.desktop = desktop;
-        this.students_filename = "students.txt";
-        this.elements_filename = "elements.txt";
 
         this.students = Students.load(students_filename);
         this.elements = Elems.load(elements_filename);
@@ -50,7 +48,7 @@ public class LibrarianUI extends JComponent implements ActionListener {
         
         content = frame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-        actionPerformed(new ActionEvent(this, 0, "main_menu"));
+        actionPerformed(new ActionEvent(this, 0, "main_menu")); // basically a hack to avoid code duplication, calls actionPerformed with a fake event
         
         frame.pack();
         frame.setLocation(dx, dy);

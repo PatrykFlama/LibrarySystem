@@ -1,61 +1,55 @@
+import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyVetoException;
 import javax.swing.*;
 
 import Structs.Students;
 import Structs.Student;
 
 public class StudentUI extends JComponent implements ActionListener {
-    Student obj;
-    String file_name;
+    static int openFrameCount = 0;
+    static final int xOffset = 30, yOffset = 30;
+    static final String students_filename = "students.txt";     //TODO escalate name
 
-    public StudentUI(int id, String file_name){
-        this.obj = (Students.load(file_name)).getStudent(id);
-        this.file_name = file_name;
+    Student student;
+
+    JInternalFrame frame;
+    Container content;
+    JDesktopPane desktop;
+
+    public StudentUI(JDesktopPane desktop, int id){
+        this.desktop = desktop;
+        this.student = (Students.load(students_filename)).getStudent(id);
     }
 
-    // public void run(){
-    //     JFrame frame = new JFrame("Student Editor");
-    //     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //     frame.setSize(500, 500);
-    //     frame.setLocationRelativeTo(null);
+    public void run(int dx, int dy){
+        frame = new JInternalFrame("Student Editor");
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setSize(500, 500);
         
-    //     Container content = frame.getContentPane();
-    //     content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-    //     setContainer(content);
-        
-    //     frame.pack();
-    //     frame.setVisible(true);
-    // }
+        content = frame.getContentPane();
+        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+        actionPerformed(new ActionEvent(this, 0, "main_menu")); // basically a hack to avoid code duplication, calls actionPerformed with a fake event
 
-    // void setContainer(Container container){
-    //     id_field.setMaximumSize(new Dimension(200, 20));
-    //     name_field.setMaximumSize(new Dimension(200, 20));
-    //     term_field.setMaximumSize(new Dimension(200, 20));
+        frame.pack();
+        frame.setLocation(dx, dy);
+        frame.setVisible(true);
+        desktop.add(frame);
+        try{
+            frame.setSelected(true);
+        } catch(PropertyVetoException e){}
+    }
 
-    //     container.add(new JLabel("Student ID:"));
-    //     container.add(this.id_field);
-    //     container.add(new JLabel("Name:"));
-    //     container.add(this.name_field);
-    //     container.add(new JLabel("Term:"));
-    //     container.add(this.term_field);
+    void setMainContainer(){
 
-    //     JButton save_button = new JButton("Save");
-    //     save_button.addActionListener(this);
-    //     save_button.setActionCommand("save");
-    //     container.add(save_button);
-    // }
+    }
 
-    public void actionPerformed(ActionEvent e){
-        // String cmd = e.getActionCommand();
-        // if(cmd.equals("save")){
-        //     this.obj.id = Integer.parseInt(this.id_field.getText());
-        //     this.obj.name = this.name_field.getText();
-        //     this.obj.term = Integer.parseInt(this.term_field.getText());
-            
-        //     if(this.obj.checkData())
-        //         Student.save(this.obj, this.file_name);
-        //     else
-        //         JOptionPane.showMessageDialog(null, "Invalid data!", "Error", JOptionPane.ERROR_MESSAGE);
-        // }
+    public void actionPerformed(ActionEvent event){
+        String cmd = event.getActionCommand();
+
+        if(cmd.equals("main_menu")){
+            content.removeAll();
+            setMainContainer();
+        }
     }
 }
