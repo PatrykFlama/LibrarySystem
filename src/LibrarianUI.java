@@ -18,11 +18,10 @@ import Structs.Edit.StudentEdit;
 public class LibrarianUI extends JComponent implements ActionListener {
     static int openFrameCount = 0;
     static final int xOffset = 30, yOffset = 30;
-    static final String students_filename = "students.txt";     //TODO escalate name
-    static final String elements_filename = "elements.txt";
 
     Students students;
     Elems elements;
+    String elements_filename;
 
     JTextField currentStudentID;
     JTextField currentElementID;
@@ -31,8 +30,9 @@ public class LibrarianUI extends JComponent implements ActionListener {
     Container content;
     JDesktopPane desktop;
 
-    public LibrarianUI(JDesktopPane desktop, Students students){
+    public LibrarianUI(JDesktopPane desktop, Students students, String elements_filename){
         this.desktop = desktop;
+        this.elements_filename = elements_filename;
 
         this.students = students;
         this.elements = Elems.load(elements_filename);

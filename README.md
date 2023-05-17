@@ -12,7 +12,6 @@ Application starts from a login screen, where user can log in as librarian or st
 \* for static  
 \~ for UI functionallity
 
-<!-- TODO StudentUI -->
 ```mermaid
 classDiagram
     MainUI --> LibrarianUI : login

@@ -86,13 +86,13 @@ public class StudentUI extends JComponent implements ActionListener {
         else {
             content.removeAll();
             if(cmd.equals("list_borrowed_elements")){
-                setDisplayBorrowedElementsContainer();
+                setDisplayBorrowedElementsContainer(); //todo
             } else if(cmd.equals("borrow_element")){
-                setDisplayBorrowElementContainer();
+                setDisplayBorrowElementContainer(); //todo
             } else if(cmd.equals("return_element")){
-                setDisplayReturnElementContainer();
+                setDisplayReturnElementContainer(); //todo
             } else if(cmd.equals("search")){
-                setDisplaySearchContainer();
+                setDisplaySearchContainer(); //todo
             }
 
             JButton back_button = new JButton("Back");
@@ -105,7 +105,7 @@ public class StudentUI extends JComponent implements ActionListener {
         content.repaint();
     }
 
-    void setDisplayBorrowedElementsContainer(){
+    void setDisplayBorrowedElementsContainer(){ //todo
         JButton back_button = new JButton("Back");
         back_button.addActionListener(this);
         back_button.setActionCommand("main_menu");
@@ -118,7 +118,7 @@ public class StudentUI extends JComponent implements ActionListener {
         }
     }
 
-    void setDisplayBorrowElementContainer(){
+    void setDisplayBorrowElementContainer(){ //todo
         JLabel label = new JLabel("Enter element ID:");
         content.add(label);
 
@@ -140,7 +140,7 @@ public class StudentUI extends JComponent implements ActionListener {
         content.add(borrow_button);
     }
 
-    void setDisplayReturnElementContainer(){
+    void setDisplayReturnElementContainer(){ //todo
         JLabel label = new JLabel("Enter element ID:");
         content.add(label);
 
@@ -162,7 +162,7 @@ public class StudentUI extends JComponent implements ActionListener {
         content.add(return_button);
     }
 
-    void setDisplaySearchContainer(){
+    void setDisplaySearchContainer(){ //todo
         JLabel label = new JLabel("Enter element ID:");
         content.add(label);
 

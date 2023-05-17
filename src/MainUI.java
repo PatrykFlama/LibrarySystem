@@ -14,6 +14,8 @@ public class MainUI implements ActionListener {
     static int openFrameCount = 0;
     static final int xOffset = 150, yOffset = 5;
     static final String students_filename = "students.txt";
+    static final String elements_filename = "elements.txt";
+
 
     Students students;
 
@@ -44,7 +46,7 @@ public class MainUI implements ActionListener {
     }
     
     void LibrarianUI(){
-        LibrarianUI lUi = new LibrarianUI(this.desktop, students);
+        LibrarianUI lUi = new LibrarianUI(this.desktop, students, elements_filename);
         lUi.run(xOffset, yOffset);
     }
     
