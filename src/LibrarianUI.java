@@ -31,10 +31,10 @@ public class LibrarianUI extends JComponent implements ActionListener {
     Container content;
     JDesktopPane desktop;
 
-    public LibrarianUI(JDesktopPane desktop){
+    public LibrarianUI(JDesktopPane desktop, Students students){
         this.desktop = desktop;
 
-        this.students = Students.load(students_filename);
+        this.students = students;
         this.elements = Elems.load(elements_filename);
 
         currentStudentID = new JTextField();
@@ -168,12 +168,10 @@ public class LibrarianUI extends JComponent implements ActionListener {
             }
 
         } else if(cmd.equals("save_and_exit")){
-            Students.save(students, students_filename);
             Elems.save(elements, elements_filename);
             frame.dispose();
         }
         else {
-            Container content = frame.getContentPane();
             content.removeAll();
             if(cmd.equals("display_students")){
                 setDisplayStudentsContainer();

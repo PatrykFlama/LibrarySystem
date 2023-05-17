@@ -14,7 +14,7 @@ public class Student implements Serializable {
     public int id;
     public String name;
     public int term;
-    HashMap<Integer, Integer> borrowed_elems; // id, amt
+    public HashMap<Integer, Integer> borrowed_elems; // id, amt
 
     public Student(){ this("None"); }
     public Student(String name){ this(name, 0); }
@@ -32,6 +32,32 @@ public class Student implements Serializable {
             result += "    " + id + ": " + this.borrowed_elems.get(id) + "\n";
         }
         return result;
+    }
+
+    public String elementsToString(){
+        String result = "";
+        for (Integer id : this.borrowed_elems.keySet()){
+            result += "    " + id + ": " + this.borrowed_elems.get(id) + "\n";
+        }
+        return result;
+    }
+
+    public void borrowElement(int elem_id){
+        if(this.borrowed_elems.containsKey(elem_id)){
+            this.borrowed_elems.put(elem_id, this.borrowed_elems.get(elem_id) + 1);
+        } else {
+            this.borrowed_elems.put(elem_id, 1);
+        }
+    }
+
+    public void returnElement(int elem_id){
+        if(this.borrowed_elems.containsKey(elem_id)){
+            if(this.borrowed_elems.get(elem_id) > 1){
+                this.borrowed_elems.put(elem_id, this.borrowed_elems.get(elem_id) - 1);
+            } else {
+                this.borrowed_elems.remove(elem_id);
+            }
+        }
     }
 
     public Boolean checkData(){     // true if data is correct

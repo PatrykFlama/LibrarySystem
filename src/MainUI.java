@@ -13,22 +13,44 @@ import Structs.Elements.Movie;
 public class MainUI implements ActionListener {
     static int openFrameCount = 0;
     static final int xOffset = 150, yOffset = 5;
+    static final String students_filename = "students.txt";
+
+    Students students;
 
     JFrame mainFrame;
     JDesktopPane desktop;
 
     JInternalFrame loginFrame;
     Container loginContent;
+
+    JTextField librarianLogin;
+    JTextField librarianPasswd;
+    JTextField studentLogin;
+    JTextField studentPasswd;
+
+    public MainUI(){
+        librarianLogin = new JTextField();
+        librarianPasswd = new JTextField();
+        studentLogin = new JTextField();
+        studentPasswd = new JTextField();
+
+        students = Students.load(students_filename);
+    }
     
     public void run() {
-        // regenTestData();
+        regenTestData();
         setupDesktop();
         setupMainFrame();
     }
     
     void LibrarianUI(){
-        LibrarianUI lUi = new LibrarianUI(this.desktop);
+        LibrarianUI lUi = new LibrarianUI(this.desktop, students);
         lUi.run(xOffset, yOffset);
+    }
+    
+    void StudentUI(int id){
+        StudentUI sUi = new StudentUI(this.desktop, id, students);
+        sUi.run(xOffset, yOffset);
     }
 
     void setupDesktop(){
@@ -67,17 +89,20 @@ public class MainUI implements ActionListener {
         studButton.setActionCommand("student_login_screen");
         loginContent.add(studButton);
 
+        JButton save_and_exit = new JButton("Save and exit");
+        save_and_exit.addActionListener(this);
+        save_and_exit.setActionCommand("save_and_exit");
+        loginContent.add(save_and_exit);
+
         loginFrame.pack();
     }
 
     void displayLoginLibrarian(){
         loginContent.add(new JLabel("Login:"));
-        JTextField login = new JTextField();
-        loginContent.add(login);
+        loginContent.add(librarianLogin);
         
         loginContent.add(new JLabel("Password:"));
-        JTextField password = new JTextField();
-        loginContent.add(password);
+        loginContent.add(librarianPasswd);
 
         JButton loginButton = new JButton("Login");
         loginButton.addActionListener(this);
@@ -87,12 +112,10 @@ public class MainUI implements ActionListener {
     
     void displayLoginStudent(){
         loginContent.add(new JLabel("Login:"));
-        JTextField login = new JTextField();
-        loginContent.add(login);
-        
+        loginContent.add(studentLogin);
+
         loginContent.add(new JLabel("Password:"));
-        JTextField password = new JTextField();
-        loginContent.add(password);
+        loginContent.add(studentPasswd);
 
         JButton loginButton = new JButton("Login");
         loginButton.addActionListener(this);
@@ -100,17 +123,27 @@ public class MainUI implements ActionListener {
         loginContent.add(loginButton);
     }
 
+    Boolean checkLibrarianCredentials(){
+        return true;    //todo
+    }
+    Boolean checkStudentCredentials(){
+        return true;    //todo
+    }
 
     public void actionPerformed(ActionEvent event){
         String cmd = event.getActionCommand();
 
         if(cmd == "login_screen"){
-            loginContent.removeAll();
             displayLogin();
         } else if(cmd == "login_librarian"){
-            LibrarianUI();
+            //todo
+            if(checkLibrarianCredentials()) LibrarianUI();
         } else if(cmd == "login_student"){
-            // StudentUI();
+            //todo
+            if(checkLibrarianCredentials()) StudentUI(1);
+        } else if(cmd == "save_and_exit"){
+            Students.save(students, students_filename);
+            System.exit(0);
         } else{
             loginContent.removeAll();
             if(cmd == "librarian_login_screen"){
@@ -139,7 +172,11 @@ public class MainUI implements ActionListener {
     
     void regenTestData(){
         Students s = new Students();
-        s.addStudent(new Student("Jan Kowalski", 3, 1));
+        Student test = new Student("Jan Kowalski", 3, 1);
+        test.borrowElement(1);
+        test.borrowElement(2);
+        test.borrowElement(3);
+        s.addStudent(test);
         s.addStudent(new Student("Wieslaw Paleta", 0, 2));
         s.addStudent(new Student("Janusz Tracz", 1, 3));
         for(int i = 0; i < 20; i++)
