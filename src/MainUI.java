@@ -126,10 +126,10 @@ public class MainUI implements ActionListener {
     }
 
     Boolean checkLibrarianCredentials(){
-        return true;    //todo
+        return true;    //TODO
     }
     Boolean checkStudentCredentials(){
-        return true;    //todo
+        return true;    //TODO
     }
 
     public void actionPerformed(ActionEvent event){
@@ -138,10 +138,10 @@ public class MainUI implements ActionListener {
         if(cmd == "login_screen"){
             displayLogin();
         } else if(cmd == "login_librarian"){
-            //todo
+            //TODO
             if(checkLibrarianCredentials()) LibrarianUI();
         } else if(cmd == "login_student"){
-            //todo
+            //TODO
             if(checkLibrarianCredentials()) StudentUI(1);
         } else if(cmd == "save_and_exit"){
             Students.save(students, students_filename);
