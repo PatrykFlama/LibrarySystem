@@ -10,7 +10,8 @@ import Structs.Student;
 public class StudentUI extends JComponent implements ActionListener {
     static int openFrameCount = 0;
     static final int xOffset = 30, yOffset = 30;
-    static final String elements_filename = "elements.txt";     //TODO escalate name
+    
+    String elements_filename = "elements.txt";      // TODO no more filenames - pass object instead
 
     Student student;
     Students students;
@@ -20,9 +21,10 @@ public class StudentUI extends JComponent implements ActionListener {
     Container content;
     JDesktopPane desktop;
 
-    public StudentUI(JDesktopPane desktop, int id, Students students){
+    public StudentUI(JDesktopPane desktop, int id, Students students, String elements_filename){
         this.desktop = desktop;
         this.students = students;
+        this.elements_filename = elements_filename;
         this.student = this.students.getStudent(id);
         this.elements = Elems.load(elements_filename);
     }

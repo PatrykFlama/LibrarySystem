@@ -51,7 +51,7 @@ public class MainUI implements ActionListener {
     }
     
     void StudentUI(int id){
-        StudentUI sUi = new StudentUI(this.desktop, id, students);
+        StudentUI sUi = new StudentUI(this.desktop, id, students, elements_filename);
         sUi.run(xOffset, yOffset);
     }
 

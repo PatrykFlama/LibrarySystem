@@ -21,7 +21,7 @@ public class LibrarianUI extends JComponent implements ActionListener {
 
     Students students;
     Elems elements;
-    String elements_filename;
+    String elements_filename;       //TODO no more filenames - pass object instead
 
     JTextField currentStudentID;
     JTextField currentElementID;
