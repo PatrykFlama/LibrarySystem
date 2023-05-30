@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class Elems implements Serializable{
-    HashMap<Integer, Elem> elems;
+    public HashMap<Integer, Elem> elems;
 
     public Elems(){
         this.elems = new HashMap<Integer, Elem>();

@@ -45,6 +45,7 @@ public class LibrarianUI extends JComponent implements ActionListener {
         frame = new JInternalFrame("Logged in as: Librarian", true, true, true, true);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setSize(500, 500);
+        frame.setAutoscrolls(getAutoscrolls());     // TODO what is that and how to use it
         
         content = frame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));

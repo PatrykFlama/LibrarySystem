@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyVetoException;
+import java.util.Map.Entry;
+
 import javax.swing.*;
 
 import Structs.Students;
@@ -32,7 +34,8 @@ public class StudentUI extends JComponent implements ActionListener {
     public void run(int dx, int dy){
         frame = new JInternalFrame("Student Editor", true, true, true, true);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        frame.setSize(500, 500);
+        // frame.setAutoscrolls(getAutoscrolls());
+        frame.setSize(1000, 1000);
         
         content = frame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
@@ -88,13 +91,13 @@ public class StudentUI extends JComponent implements ActionListener {
         else {
             content.removeAll();
             if(cmd.equals("list_borrowed_elements")){
-                setDisplayBorrowedElementsContainer(); //TODO
+                setDisplayBorrowedElementsContainer();
             } else if(cmd.equals("borrow_element")){
-                setDisplayBorrowElementContainer(); //TODO
+                setDisplayBorrowElementContainer();
             } else if(cmd.equals("return_element")){
-                setDisplayReturnElementContainer(); //TODO
+                setDisplayReturnElementContainer();
             } else if(cmd.equals("search")){
-                setDisplaySearchContainer(); //TODO
+                setDisplaySearchContainer();
             }
 
             JButton back_button = new JButton("Back");
@@ -107,20 +110,23 @@ public class StudentUI extends JComponent implements ActionListener {
         content.repaint();
     }
 
-    void setDisplayBorrowedElementsContainer(){ //TODO
+    void setDisplayBorrowedElementsContainer(){
         JButton back_button = new JButton("Back");
         back_button.addActionListener(this);
         back_button.setActionCommand("main_menu");
         content.add(back_button);
 
         content.add(new JLabel("Borrowed elements:"));
-        for(int i = 0; i < student.borrowed_elems.size(); i++){
-            JLabel element_label = new JLabel(elements.getElem(student.borrowed_elems.get(i)).toString());
-            content.add(element_label);
+        for(Entry<Integer, Integer> id_amt : student.borrowed_elems.entrySet()){
+            try{
+                content.add(new JTextField("Id " + id_amt.getKey().toString() + ", amt " + id_amt.getValue().toString() + ": " + elements.getElem(id_amt.getKey()).toString()));
+            } catch(IllegalArgumentException e){
+                continue;
+            }
         }
     }
 
-    void setDisplayBorrowElementContainer(){ //TODO
+    void setDisplayBorrowElementContainer(){
         JLabel label = new JLabel("Enter element ID:");
         content.add(label);
 
@@ -142,7 +148,7 @@ public class StudentUI extends JComponent implements ActionListener {
         content.add(borrow_button);
     }
 
-    void setDisplayReturnElementContainer(){ //TODO
+    void setDisplayReturnElementContainer(){
         JLabel label = new JLabel("Enter element ID:");
         content.add(label);
 

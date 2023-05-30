@@ -58,6 +58,7 @@ public class MainUI implements ActionListener {
     void setupDesktop(){
         mainFrame = new JFrame("Library Management System");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         mainFrame.setLocationRelativeTo(null);
         desktop = new JDesktopPane();
         mainFrame.setContentPane(desktop);
