@@ -27,6 +27,10 @@ public class Elem implements Serializable {
         this.id = ("Elem").hashCode();
     }
 
+    public String getName(){
+        return "";
+    }
+
     public static void save(Elem object, String file){
         try{
             FileOutputStream fileOutput = new FileOutputStream(file);

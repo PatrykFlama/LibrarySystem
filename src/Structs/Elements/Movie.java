@@ -29,6 +29,10 @@ public class Movie extends Elem {
         this.id = ("Movie"+title).hashCode();
     }
 
+    public String getName(){
+        return this.title;
+    }
+
     public static Movie load(String file){
         return (Movie) Elem.load(file);
     }

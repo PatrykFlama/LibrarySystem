@@ -170,26 +170,35 @@ public class StudentUI extends JComponent implements ActionListener {
         content.add(return_button);
     }
 
-    void setDisplaySearchContainer(){ //TODO
-        JLabel label = new JLabel("Enter element ID:");
+    void setDisplaySearchContainer(){
+        JLabel label = new JLabel("Enter searched name:");
         content.add(label);
 
-        // JTextField element_id = new JTextField();
-        // content.add(element_id);
+        JTextField name = new JTextField();
+        content.add(name);
 
-        // JButton search_button = new JButton("Search");
-        // search_button.addActionListener(new ActionListener(){
-        //     public void actionPerformed(ActionEvent event){
-        //         String cmd = event.getActionCommand();
-        //         if(cmd.equals("Search")){
-        //             int id = Integer.parseInt(element_id.getText());
-        //             ElementUI element_ui = new ElementUI(desktop, id);
-        //             element_ui.run(0, 0);
-        //             element_id.setText("");
-        //         }
-        //     }
-        // });
-        // search_button.setActionCommand("Search");
-        // content.add(search_button);
+        JTextArea result = new JTextArea();
+        result.setEditable(false);
+        content.add(result);
+
+        JButton search_button = new JButton("Search");
+        search_button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event){
+                String cmd = event.getActionCommand();
+                if(cmd.equals("Search")){
+                    String s = name.getText();
+                    result.setText("");
+                    for(Integer ids : elements.search(s)){
+                        try{
+                            result.append(elements.getElem(ids).toString() + "\n");
+                        } catch(IllegalArgumentException e){
+                            continue;
+                        }
+                    }
+                }
+            }
+        });
+        search_button.setActionCommand("Search");
+        content.add(search_button);
     }
 }

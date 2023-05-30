@@ -6,7 +6,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 public class Elems implements Serializable{
     public HashMap<Integer, Elem> elems;
@@ -39,6 +42,14 @@ public class Elems implements Serializable{
             result += elem.toString() + "\n";
         }
         return result;
+    }
+
+    public List<Integer> search(String s){        // look for element with given name and return its id
+        List<Integer> res = new ArrayList<Integer>(); 
+        for (Integer id : elems.keySet()){
+            if(elems.get(id).getName().toLowerCase().indexOf(s.toLowerCase()) != -1) res.add(id);
+        }
+        return res;
     }
 
     public static void save(Elems object, String file){

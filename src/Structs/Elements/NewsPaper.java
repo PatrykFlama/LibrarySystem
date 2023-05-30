@@ -23,6 +23,10 @@ public class NewsPaper extends Elem {
         this.id = ("NewsPaper"+title).hashCode();
     }
 
+    public String getName(){
+        return this.title;
+    }
+
     public static NewsPaper load(String file){
         return (NewsPaper) Elem.load(file);
     }

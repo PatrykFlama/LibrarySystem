@@ -29,4 +29,8 @@ public class Book extends Elem {
     public static Book load(String file){
         return (Book) Elem.load(file);
     }
+
+    public String getName(){
+        return this.name;
+    }
 }
