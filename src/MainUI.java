@@ -11,8 +11,6 @@ import Structs.Elements.NewsPaper;
 import Structs.Elements.Movie;
 
 
-//TODO clear credentials after login
-
 public class MainUI implements ActionListener {
     static int openFrameCount = 0;
     static final int xOffset = 150, yOffset = 5;
@@ -148,10 +146,18 @@ public class MainUI implements ActionListener {
         if(cmd == "login_screen"){
             displayLogin();
         } else if(cmd == "login_librarian"){
-            if(checkLibrarianCredentials()) LibrarianUI();
+            if(checkLibrarianCredentials()){
+                LibrarianUI();
+                librarianLogin.setText("");
+                librarianPasswd.setText("");
+            }
             else JOptionPane.showMessageDialog(null, "Wrong credentials");
         } else if(cmd == "login_student"){
-            if(checkStudentCredentials()) StudentUI(Integer.parseInt(studentLogin.getText()));
+            if(checkStudentCredentials()){
+                StudentUI(Integer.parseInt(studentLogin.getText()));
+                studentLogin.setText("");
+                studentPasswd.setText("");
+            } 
             else JOptionPane.showMessageDialog(null, "Wrong credentials");
         } else if(cmd == "save_and_exit"){
             Students.save(students, students_filename);
