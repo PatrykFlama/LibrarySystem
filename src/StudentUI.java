@@ -30,12 +30,12 @@ public class StudentUI extends JComponent implements ActionListener {
     public void run(int dx, int dy){
         frame = new JInternalFrame("Student " + Integer.toString(student.id), true, true, true, true);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        frame.setSize(1000, 1000);
         
         content = frame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         actionPerformed(new ActionEvent(this, 0, "main_menu")); // basically a hack to avoid code duplication, calls actionPerformed with a fake event
 
+        frame.pack();
         repackFrame();
         frame.setLocation(dx, dy);
         frame.setVisible(true);
@@ -46,9 +46,12 @@ public class StudentUI extends JComponent implements ActionListener {
     }
 
     void repackFrame(){
-        frame.pack();
         Dimension framesize = frame.getSize();
-        frame.setSize(Math.min(200, (int)framesize.getWidth()), Math.min(500, (int)framesize.getHeight()));
+        if(framesize.getWidth() <= 200 && framesize.getHeight() <= 500){
+            frame.pack();
+            framesize = frame.getSize();
+            frame.setSize(Math.min(200, (int)framesize.getWidth()), Math.min(500, (int)framesize.getHeight()));
+        }
         content.validate();
         content.repaint();
     }

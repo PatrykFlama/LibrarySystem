@@ -49,12 +49,24 @@ public class LibrarianUI extends JComponent implements ActionListener {
         actionPerformed(new ActionEvent(this, 0, "main_menu")); // basically a hack to avoid code duplication, calls actionPerformed with a fake event
         
         frame.pack();
+        repackFrame();
         frame.setLocation(dx, dy);
         frame.setVisible(true);
         desktop.add(frame);
         try{
             frame.setSelected(true);
         } catch(PropertyVetoException e){}
+    }
+
+    void repackFrame(){
+        Dimension framesize = frame.getSize();
+        if(framesize.getWidth() <= 200 && framesize.getHeight() <= 500){
+            frame.pack();
+            framesize = frame.getSize();
+            frame.setSize(Math.min(200, (int)framesize.getWidth()), Math.min(500, (int)framesize.getHeight()));
+        }
+        content.validate();
+        content.repaint();
     }
 
     void setMainContainer(){
@@ -185,8 +197,7 @@ public class LibrarianUI extends JComponent implements ActionListener {
             content.add(back_button);
         }
 
-        content.validate();
-        content.repaint();
+        repackFrame();
     }
 
     void setupNewFrame(JInternalFrame frame){
