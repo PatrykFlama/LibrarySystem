@@ -30,7 +30,7 @@ public class Book extends Elem {
         return (Book) Elem.load(file);
     }
 
-    public String getName(){
-        return this.name;
+    public String getSearchString(){
+        return "book" + this.name + this.author + Integer.toString(this.year);
     }
 }

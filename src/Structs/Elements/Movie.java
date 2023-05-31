@@ -29,8 +29,8 @@ public class Movie extends Elem {
         this.id = ("Movie"+title).hashCode();
     }
 
-    public String getName(){
-        return this.title;
+    public String getSearchString(){
+        return "moviefilm" + this.title + this.director + Integer.toString(this.year) + this.genre;
     }
 
     public static Movie load(String file){

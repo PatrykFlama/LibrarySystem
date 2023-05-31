@@ -23,8 +23,8 @@ public class NewsPaper extends Elem {
         this.id = ("NewsPaper"+title).hashCode();
     }
 
-    public String getName(){
-        return this.title;
+    public String getSearchString(){
+        return "newspaper" + this.title + this.date;
     }
 
     public static NewsPaper load(String file){

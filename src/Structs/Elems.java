@@ -47,7 +47,7 @@ public class Elems implements Serializable{
     public List<Integer> search(String s){        // look for element with given name and return its id
         List<Integer> res = new ArrayList<Integer>(); 
         for (Integer id : elems.keySet()){
-            if(elems.get(id).getName().toLowerCase().indexOf(s.toLowerCase()) != -1) res.add(id);
+            if(elems.get(id).getSearchString().toLowerCase().indexOf(s.toLowerCase()) != -1) res.add(id);
         }
         return res;
     }

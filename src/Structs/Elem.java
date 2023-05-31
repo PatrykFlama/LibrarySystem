@@ -27,7 +27,7 @@ public class Elem implements Serializable {
         this.id = ("Elem").hashCode();
     }
 
-    public String getName(){
+    public String getSearchString(){
         return "";
     }
 
