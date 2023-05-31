@@ -160,8 +160,7 @@ public class MainUI implements ActionListener {
             } 
             else JOptionPane.showMessageDialog(null, "Wrong credentials");
         } else if(cmd == "save_and_exit"){
-            Students.save(students, students_filename);
-            Elems.save(elements, elements_filename);
+            saveData();
             System.exit(0);
         } else{
             loginContent.removeAll();
@@ -188,6 +187,12 @@ public class MainUI implements ActionListener {
             frame.setSelected(true);
         } catch(PropertyVetoException e){}
     }
+
+    void saveData(){
+        Students.save(students, students_filename);
+        Elems.save(elements, elements_filename);
+    }
+
     
     void regenTestData(){
         Students s = new Students();
