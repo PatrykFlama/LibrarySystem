@@ -207,7 +207,6 @@ ___
 <summary> Stuff </summary>
 
 ## TODO
-* create elements,students in ui
 ___
 ## Stuff
 ### Wymagania

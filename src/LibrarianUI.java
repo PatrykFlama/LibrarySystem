@@ -77,6 +77,10 @@ public class LibrarianUI extends JComponent implements ActionListener {
         JButton edit_student = new JButton("Edit Student");
         edit_student.addActionListener(this);
         edit_student.setActionCommand("edit_student");
+
+        JButton add_student = new JButton("Add/remove Student");
+        add_student.addActionListener(this);
+        add_student.setActionCommand("add_student");
         
         JButton display_elements = new JButton("Display elements");
         display_elements.addActionListener(this);
@@ -85,6 +89,10 @@ public class LibrarianUI extends JComponent implements ActionListener {
         JButton edit_element = new JButton("Edit element");
         edit_element.addActionListener(this);
         edit_element.setActionCommand("edit_element");
+        
+        JButton add_element = new JButton("Add/remove element");
+        add_element.addActionListener(this);
+        add_element.setActionCommand("add_element");
 
         JButton save_and_exit = new JButton("Save and exit");
         save_and_exit.addActionListener(this);
@@ -92,8 +100,10 @@ public class LibrarianUI extends JComponent implements ActionListener {
         
         content.add(display_students);
         content.add(edit_student);
+        content.add(add_student);
         content.add(display_elements);
         content.add(edit_element);
+        content.add(add_element);
         content.add(save_and_exit);
     }
 
@@ -106,13 +116,22 @@ public class LibrarianUI extends JComponent implements ActionListener {
         JTextArea textArea = new JTextArea(students.toString());
         content.add(new JScrollPane(textArea));
     }
-    void setEditStudentContainer(){
+    void setEditStudentContainer(Boolean editor_mode){
         content.add(new JLabel("Student ID"));
         content.add(currentStudentID);
-        JButton display_student = new JButton("Edit student");
-        display_student.addActionListener(this);
-        display_student.setActionCommand("student_edit_window");
-        content.add(display_student);
+        if(editor_mode){
+            JButton display_student = new JButton("Edit student");
+            display_student.addActionListener(this);
+            display_student.setActionCommand("student_edit_window");
+            content.add(display_student);
+        } else{
+            content.add(new JLabel("Type in id to remove student"));
+            content.add(new JLabel("Leave empty to add new student"));
+            JButton add_student = new JButton("Execute");
+            add_student.addActionListener(this);
+            add_student.setActionCommand("add_student_action");
+            content.add(add_student);
+        }
     }
     void setDisplayElementsContainer(){
         JButton back_button = new JButton("Back");
@@ -122,13 +141,22 @@ public class LibrarianUI extends JComponent implements ActionListener {
         content.add(back_button);
         content.add(new JScrollPane(new JTextArea(elements.toString())));
     }
-    void setEditElementContainer(){
+    void setEditElementContainer(Boolean editor_mode){
         content.add(new JLabel("Element ID"));
         content.add(currentElementID);
-        JButton display_element = new JButton("Edit element");
-        display_element.addActionListener(this);
-        display_element.setActionCommand("element_edit_window");
-        content.add(display_element);
+        if(editor_mode){
+            JButton display_element = new JButton("Edit element");
+            display_element.addActionListener(this);
+            display_element.setActionCommand("element_edit_window");
+            content.add(display_element);
+        } else{
+            content.add(new JLabel("Type in id to remove element"));
+            content.add(new JLabel("Type book/movie/newspaper to add it"));
+            JButton add_element = new JButton("Execute");
+            add_element.addActionListener(this);
+            add_element.setActionCommand("add_element_action");
+            content.add(add_element);
+        }
     }
 
     public void actionPerformed(ActionEvent event){
@@ -178,6 +206,60 @@ public class LibrarianUI extends JComponent implements ActionListener {
 
         } else if(cmd.equals("save_and_exit")){
             frame.dispose();
+        } else if(cmd.equals("add_student_action")){
+            if(currentStudentID.getText().equals("")){  // no id - create student
+                Student student = new Student();
+                students.addStudent(student);
+                JOptionPane.showMessageDialog(null, "Student has been added!", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
+                currentStudentID.setText(Integer.toString(student.id));
+                actionPerformed(new ActionEvent(this, 0, "student_edit_window"));
+                return;
+            }
+            try{
+                Integer studentID = Integer.parseInt(currentStudentID.getText());
+                Student student = students.getStudent(studentID);
+                // student with given id already exists, remove him
+                students.removeStudent(student.id);
+                JOptionPane.showMessageDialog(null, "Student with given id has been removed!", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
+            } catch(NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Id has to be integer!", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch(IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null, "Student with given id does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else if(cmd.equals("add_element_action")){
+            if(currentElementID.getText().equals("book")){  // no id - create element
+                Elem element = new Book();
+                elements.addElem(element);
+                JOptionPane.showMessageDialog(null, "Element has been added!", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
+                currentElementID.setText(Integer.toString(element.id));
+                actionPerformed(new ActionEvent(this, 0, "element_edit_window"));
+                return;
+            } else if(currentElementID.getText().equals("movie")){  // no id - create element
+                Elem element = new Movie();
+                elements.addElem(element);
+                JOptionPane.showMessageDialog(null, "Element has been added!", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
+                currentElementID.setText(Integer.toString(element.id));
+                actionPerformed(new ActionEvent(this, 0, "element_edit_window"));
+                return;
+            } else if(currentElementID.getText().equals("newspaper")){  // no id - create element
+                Elem element = new NewsPaper();
+                elements.addElem(element);
+                JOptionPane.showMessageDialog(null, "Element has been added!", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
+                currentElementID.setText(Integer.toString(element.id));
+                actionPerformed(new ActionEvent(this, 0, "element_edit_window"));
+                return;
+            }
+            try{
+                Integer elementID = Integer.parseInt(currentElementID.getText());
+                Elem element = elements.getElem(elementID);
+                // element with given id already exists, remove him
+                elements.removeElem(element.id);
+                JOptionPane.showMessageDialog(null, "Element with given id has been removed!", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
+            } catch(NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Id has to be integer!", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch(IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null, "Element with given id does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         else {
             content.removeAll();
@@ -186,9 +268,13 @@ public class LibrarianUI extends JComponent implements ActionListener {
             } else if(cmd.equals("display_elements")){
                 setDisplayElementsContainer();
             } else if(cmd.equals("edit_student")){
-                setEditStudentContainer();
+                setEditStudentContainer(true);
+            } else if(cmd.equals("add_student")){
+                setEditStudentContainer(false);
             } else if(cmd.equals("edit_element")){
-                setEditElementContainer();
+                setEditElementContainer(true);
+            } else if(cmd.equals("add_element")){
+                setEditElementContainer(false);
             }
 
             JButton back_button = new JButton("Back");
