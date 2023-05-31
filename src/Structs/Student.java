@@ -65,12 +65,8 @@ public class Student implements Serializable {
 
     public void borrowElement(int elem_id){
         if(this.borrowed_elems.containsKey(elem_id)){
-            // TODO try later that:
-            // this.borrowed_elems.get(elem_id).add(new Date(System.currentTimeMillis()));
-            // this.borrowed_elems.put(elem_id, this.borrowed_elems.get(elem_id));
-            ArrayList<Date> new_list = this.borrowed_elems.get(elem_id);
-            new_list.add(new Date(System.currentTimeMillis()));
-            this.borrowed_elems.put(elem_id, new_list);
+            this.borrowed_elems.get(elem_id).add(new Date(System.currentTimeMillis()));
+            this.borrowed_elems.put(elem_id, this.borrowed_elems.get(elem_id));
         } else {
             ArrayList<Date> new_list = new ArrayList<Date>();
             new_list.add(new Date(System.currentTimeMillis()));
@@ -81,12 +77,8 @@ public class Student implements Serializable {
     public void returnElement(int elem_id){
         if(this.borrowed_elems.containsKey(elem_id)){
             if(this.borrowed_elems.get(elem_id).size() > 1){
-                // TODO test later that:
-                // this.borrowed_elems.get(elem_id).remove(0);
-                // this.borrowed_elems.put(elem_id, this.borrowed_elems.get(elem_id));
-                ArrayList<Date> new_list = this.borrowed_elems.get(elem_id);
-                new_list.remove(0);
-                this.borrowed_elems.put(elem_id, new_list);
+                this.borrowed_elems.get(elem_id).remove(0);
+                this.borrowed_elems.put(elem_id, this.borrowed_elems.get(elem_id));
             } else {
                 this.borrowed_elems.remove(elem_id);
             }
