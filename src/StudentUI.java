@@ -29,7 +29,7 @@ public class StudentUI extends JComponent implements ActionListener {
     }
 
     public void run(int dx, int dy){
-        frame = new JInternalFrame("Student Editor", true, true, true, true);
+        frame = new JInternalFrame("Student " + Integer.toString(student.id), true, true, true, true);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         // frame.setAutoscrolls(getAutoscrolls());
         frame.setSize(1000, 1000);

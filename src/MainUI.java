@@ -119,7 +119,7 @@ public class MainUI implements ActionListener {
     }
     
     void displayLoginStudent(){
-        loginContent.add(new JLabel("Login:"));
+        loginContent.add(new JLabel("Login (id):"));
         loginContent.add(studentLogin);
 
         loginContent.add(new JLabel("Password:"));
@@ -135,7 +135,11 @@ public class MainUI implements ActionListener {
         return librarianLogin.getText().equals("librarian") && librarianPasswd.getText().equals("");
     }
     Boolean checkStudentCredentials(){
+        try{
         return students.getStudent(Integer.parseInt(studentLogin.getText())).checkPassword(studentPasswd.getText());
+        } catch(Exception e) {
+            return false;
+        }
     }
 
     public void actionPerformed(ActionEvent event){
@@ -147,7 +151,7 @@ public class MainUI implements ActionListener {
             if(checkLibrarianCredentials()) LibrarianUI();
             else JOptionPane.showMessageDialog(null, "Wrong credentials");
         } else if(cmd == "login_student"){
-            if(checkLibrarianCredentials()) StudentUI(1);
+            if(checkStudentCredentials()) StudentUI(Integer.parseInt(studentLogin.getText()));
             else JOptionPane.showMessageDialog(null, "Wrong credentials");
         } else if(cmd == "save_and_exit"){
             Students.save(students, students_filename);
