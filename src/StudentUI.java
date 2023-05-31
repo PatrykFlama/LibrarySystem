@@ -67,6 +67,10 @@ public class StudentUI extends JComponent implements ActionListener {
         search.addActionListener(this);
         search.setActionCommand("search");
 
+        JButton change_password = new JButton("Change password");
+        change_password.addActionListener(this);
+        change_password.setActionCommand("change_password");
+
         JButton save_and_exit = new JButton("Save and exit");
         save_and_exit.addActionListener(this);
         save_and_exit.setActionCommand("save_and_exit");
@@ -75,6 +79,7 @@ public class StudentUI extends JComponent implements ActionListener {
         content.add(rent);
         content.add(return_el);
         content.add(search);
+        content.add(change_password);
         content.add(save_and_exit);
     }
 
@@ -98,6 +103,8 @@ public class StudentUI extends JComponent implements ActionListener {
                 setDisplayReturnElementContainer();
             } else if(cmd.equals("search")){
                 setDisplaySearchContainer();
+            } else if(cmd.equals("change_password")){
+                setDisplayChangePasswordContainer();
             }
 
             JButton back_button = new JButton("Back");
@@ -200,5 +207,42 @@ public class StudentUI extends JComponent implements ActionListener {
         });
         search_button.setActionCommand("Search");
         content.add(search_button);
+    }
+
+    void setDisplayChangePasswordContainer(){
+        content.add(new JLabel("Enter old password:"));
+        JTextField old_password = new JTextField();
+        content.add(old_password);
+
+        content.add(new JLabel("Enter new password:"));
+        JTextField new_password = new JTextField();
+        content.add(new_password);
+
+        content.add(new JLabel("Enter new password again:"));
+        JTextField new_password_check = new JTextField();
+        content.add(new_password_check);
+
+        JButton change_button = new JButton("Change");
+        change_button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event){
+                String cmd = event.getActionCommand();
+                if(cmd.equals("Change")){
+                    if(!student.checkPassword(old_password.getText())){
+                        JOptionPane.showMessageDialog(null, "Wrong password");
+                        return;
+                    }
+                    if(!new_password.getText().equals(new_password_check.getText())){
+                        JOptionPane.showMessageDialog(null, "Passwords don't match");
+                        return;
+                    }
+                    student.changePassword(new_password.getText());
+                    old_password.setText("");
+                    new_password.setText("");
+                    new_password_check.setText("");
+                }
+            }
+        });
+        change_button.setActionCommand("Change");
+        content.add(change_button);
     }
 }

@@ -31,6 +31,7 @@ public class MainUI implements ActionListener {
     JTextField studentPasswd;
 
     public MainUI(){
+        regenTestData();
         librarianLogin = new JTextField();
         librarianPasswd = new JTextField();
         studentLogin = new JTextField();
@@ -127,10 +128,10 @@ public class MainUI implements ActionListener {
     }
 
     Boolean checkLibrarianCredentials(){
-        return true;    //TODO
+        return librarianLogin.getText().equals("librarian") && librarianPasswd.getText().equals("");
     }
     Boolean checkStudentCredentials(){
-        return true;    //TODO
+        return students.getStudent(Integer.parseInt(studentLogin.getText())).checkPassword(studentPasswd.getText());
     }
 
     public void actionPerformed(ActionEvent event){
@@ -139,11 +140,11 @@ public class MainUI implements ActionListener {
         if(cmd == "login_screen"){
             displayLogin();
         } else if(cmd == "login_librarian"){
-            //TODO
             if(checkLibrarianCredentials()) LibrarianUI();
+            else JOptionPane.showMessageDialog(null, "Wrong credentials");
         } else if(cmd == "login_student"){
-            //TODO
             if(checkLibrarianCredentials()) StudentUI(1);
+            else JOptionPane.showMessageDialog(null, "Wrong credentials");
         } else if(cmd == "save_and_exit"){
             Students.save(students, students_filename);
             System.exit(0);

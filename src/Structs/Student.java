@@ -15,6 +15,7 @@ public class Student implements Serializable {
     public String name;
     public int term;
     public HashMap<Integer, Integer> borrowed_elems; // id, amt
+    private String password;
 
     public Student(){ this("None"); }
     public Student(String name){ this(name, 0); }
@@ -24,6 +25,7 @@ public class Student implements Serializable {
         this.name = name;
         this.term = term;
         this.borrowed_elems = new HashMap<Integer, Integer>();
+        this.password = "";
     }
 
     public String toString(){
@@ -66,6 +68,13 @@ public class Student implements Serializable {
 
     public void idReset(){
         this.id = ("Student"+name).hashCode();
+    }
+
+    public void changePassword(String new_password){
+        this.password = new_password;
+    }
+    public Boolean checkPassword(String password){
+        return this.password.equals(password);
     }
 
     public static void save(Student object, String file){
