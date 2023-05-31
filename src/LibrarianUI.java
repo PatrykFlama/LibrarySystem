@@ -43,7 +43,6 @@ public class LibrarianUI extends JComponent implements ActionListener {
         frame = new JInternalFrame("Logged in as: Librarian", true, true, true, true);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setSize(500, 500);
-        frame.setAutoscrolls(getAutoscrolls());     // TODO what is that and how to use it
         
         content = frame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
@@ -87,13 +86,13 @@ public class LibrarianUI extends JComponent implements ActionListener {
     }
 
     void setDisplayStudentsContainer(){
-        // TODO some kind of scroll bar
         JButton back_button = new JButton("Back");
         back_button.addActionListener(this);
         back_button.setActionCommand("main_menu");
         
         content.add(back_button);
-        content.add(new JTextArea(students.toString()));
+        JTextArea textArea = new JTextArea(students.toString());
+        content.add(new JScrollPane(textArea));
     }
     void setEditStudentContainer(){
         content.add(new JLabel("Student ID"));
@@ -104,13 +103,12 @@ public class LibrarianUI extends JComponent implements ActionListener {
         content.add(display_student);
     }
     void setDisplayElementsContainer(){
-        // TODO some kind of scroll bar
         JButton back_button = new JButton("Back");
         back_button.addActionListener(this);
         back_button.setActionCommand("main_menu");
         
         content.add(back_button);
-        content.add(new JTextArea(elements.toString()));
+        content.add(new JScrollPane(new JTextArea(elements.toString())));
     }
     void setEditElementContainer(){
         content.add(new JLabel("Element ID"));

@@ -31,20 +31,27 @@ public class StudentUI extends JComponent implements ActionListener {
     public void run(int dx, int dy){
         frame = new JInternalFrame("Student " + Integer.toString(student.id), true, true, true, true);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        // frame.setAutoscrolls(getAutoscrolls());
         frame.setSize(1000, 1000);
         
         content = frame.getContentPane();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         actionPerformed(new ActionEvent(this, 0, "main_menu")); // basically a hack to avoid code duplication, calls actionPerformed with a fake event
 
-        frame.pack();
+        repackFrame();
         frame.setLocation(dx, dy);
         frame.setVisible(true);
         desktop.add(frame);
         try{
             frame.setSelected(true);
         } catch(PropertyVetoException e){}
+    }
+
+    void repackFrame(){
+        frame.pack();
+        Dimension framesize = frame.getSize();
+        frame.setSize(Math.min(200, (int)framesize.getWidth()), Math.min(500, (int)framesize.getHeight()));
+        content.validate();
+        content.repaint();
     }
 
     void setMainContainer(){
@@ -108,10 +115,10 @@ public class StudentUI extends JComponent implements ActionListener {
             back_button.addActionListener(this);
             back_button.setActionCommand("main_menu");
             content.add(back_button);
+            
         }
 
-        content.validate();
-        content.repaint();
+        repackFrame();
     }
 
     void setDisplayBorrowedElementsContainer(){
@@ -193,7 +200,7 @@ public class StudentUI extends JComponent implements ActionListener {
 
         JTextArea result = new JTextArea();
         result.setEditable(false);
-        content.add(result);
+        content.add(new JScrollPane(result));
 
         JButton search_button = new JButton("Search");
         search_button.addActionListener(new ActionListener(){
@@ -209,6 +216,8 @@ public class StudentUI extends JComponent implements ActionListener {
                             continue;
                         }
                     }
+
+                    repackFrame();
                 }
             }
         });
