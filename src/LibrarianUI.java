@@ -21,7 +21,6 @@ public class LibrarianUI extends JComponent implements ActionListener {
 
     Students students;
     Elems elements;
-    String elements_filename;       //TODO no more filenames - pass object instead
 
     JTextField currentStudentID;
     JTextField currentElementID;
@@ -30,12 +29,11 @@ public class LibrarianUI extends JComponent implements ActionListener {
     Container content;
     JDesktopPane desktop;
 
-    public LibrarianUI(JDesktopPane desktop, Students students, String elements_filename){
+    public LibrarianUI(JDesktopPane desktop, Students students, Elems elements){
         this.desktop = desktop;
-        this.elements_filename = elements_filename;
 
         this.students = students;
-        this.elements = Elems.load(elements_filename);
+        this.elements = elements;
 
         currentStudentID = new JTextField();
         currentElementID = new JTextField();
@@ -169,7 +167,6 @@ public class LibrarianUI extends JComponent implements ActionListener {
             }
 
         } else if(cmd.equals("save_and_exit")){
-            Elems.save(elements, elements_filename);
             frame.dispose();
         }
         else {

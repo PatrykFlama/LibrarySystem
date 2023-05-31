@@ -10,6 +10,9 @@ import Structs.Elements.Book;
 import Structs.Elements.NewsPaper;
 import Structs.Elements.Movie;
 
+
+//TODO clear credentials after login
+
 public class MainUI implements ActionListener {
     static int openFrameCount = 0;
     static final int xOffset = 150, yOffset = 5;
@@ -18,6 +21,7 @@ public class MainUI implements ActionListener {
 
 
     Students students;
+    Elems elements;
 
     JFrame mainFrame;
     JDesktopPane desktop;
@@ -31,13 +35,13 @@ public class MainUI implements ActionListener {
     JTextField studentPasswd;
 
     public MainUI(){
-        regenTestData();
         librarianLogin = new JTextField();
         librarianPasswd = new JTextField();
         studentLogin = new JTextField();
         studentPasswd = new JTextField();
 
         students = Students.load(students_filename);
+        elements = Elems.load(elements_filename);
     }
     
     public void run() {
@@ -47,12 +51,12 @@ public class MainUI implements ActionListener {
     }
     
     void LibrarianUI(){
-        LibrarianUI lUi = new LibrarianUI(this.desktop, students, elements_filename);
+        LibrarianUI lUi = new LibrarianUI(this.desktop, students, elements);
         lUi.run(xOffset, yOffset);
     }
     
     void StudentUI(int id){
-        StudentUI sUi = new StudentUI(this.desktop, id, students, elements_filename);
+        StudentUI sUi = new StudentUI(this.desktop, id, students, elements);
         sUi.run(xOffset, yOffset);
     }
 
@@ -147,6 +151,7 @@ public class MainUI implements ActionListener {
             else JOptionPane.showMessageDialog(null, "Wrong credentials");
         } else if(cmd == "save_and_exit"){
             Students.save(students, students_filename);
+            Elems.save(elements, elements_filename);
             System.exit(0);
         } else{
             loginContent.removeAll();

@@ -13,8 +13,6 @@ public class StudentUI extends JComponent implements ActionListener {
     static int openFrameCount = 0;
     static final int xOffset = 30, yOffset = 30;
     
-    String elements_filename = "elements.txt";      // TODO no more filenames - pass object instead
-
     Student student;
     Students students;
     Elems elements;
@@ -23,12 +21,11 @@ public class StudentUI extends JComponent implements ActionListener {
     Container content;
     JDesktopPane desktop;
 
-    public StudentUI(JDesktopPane desktop, int id, Students students, String elements_filename){
+    public StudentUI(JDesktopPane desktop, int id, Students students, Elems elements){
         this.desktop = desktop;
         this.students = students;
-        this.elements_filename = elements_filename;
+        this.elements = elements;
         this.student = this.students.getStudent(id);
-        this.elements = Elems.load(elements_filename);
     }
 
     public void run(int dx, int dy){
