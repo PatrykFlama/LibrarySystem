@@ -5,6 +5,10 @@ More features will be added  as needed.
 ## How it works (roughly)
 Application starts from a login screen, where user can log in as librarian or student with given id. After logging in, user is presented with a main screen, where he can choose what he wants to do. Librarian has options to add/remove/edit/list books, movies, news papers (refered later as elements) and manage students. Student can rent/return elements, search for them. The data is stored in files.
 
+## How to run
+Tested on Windows 11 with Java 20 2023-03-21 (build 20+36-2344) 64-bit.  
+To run compile all .java files and run Main class. Other way is to simply run bash script `run.sh`.
+
 ## Class dependency graph
 \+ for public   
 \- for private    
