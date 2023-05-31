@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyVetoException;
-import java.util.Map.Entry;
 
 import javax.swing.*;
 
@@ -128,13 +127,18 @@ public class StudentUI extends JComponent implements ActionListener {
         content.add(back_button);
 
         content.add(new JLabel("Borrowed elements:"));
-        for(Entry<Integer, Integer> id_amt : student.borrowed_elems.entrySet()){
+        JTextArea result = new JTextArea();
+        
+        for(Integer id : student.getIds()){
             try{
-                content.add(new JTextField("Id " + id_amt.getKey().toString() + ", amt " + id_amt.getValue().toString() + ": " + elements.getElem(id_amt.getKey()).toString()));
+                result.append(elements.getElem(id).toString() + "\n");
+                result.append("    Borrowed on: " + student.getBorrowDates(id).toString() + "\n");
             } catch(IllegalArgumentException e){
                 continue;
             }
         }
+
+        content.add(new JScrollPane(result));
     }
 
     void setDisplayBorrowElementContainer(){

@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -14,7 +17,8 @@ public class Student implements Serializable {
     public int id;
     public String name;
     public int term;
-    public HashMap<Integer, Integer> borrowed_elems; // id, amt
+    public HashMap<Integer, ArrayList<Date>> borrowed_elems; // id, time(date)
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     private String password;
 
     public Student(){ this("None"); }
@@ -24,38 +28,65 @@ public class Student implements Serializable {
         this.id = id;
         this.name = name;
         this.term = term;
-        this.borrowed_elems = new HashMap<Integer, Integer>();
+        this.borrowed_elems = new HashMap<Integer, ArrayList<Date>>();
         this.password = "";
     }
 
-    public String toString(){
+    public String toString(){  
         String result = "(" + this.id + ") " + this.name + ", term " + this.term;
-        for (Integer id : this.borrowed_elems.keySet()){
-            result += "    " + id + ": " + this.borrowed_elems.get(id) + "\n";
-        }
-        return result;
+        return result + elementsToString();
     }
 
     public String elementsToString(){
         String result = "";
         for (Integer id : this.borrowed_elems.keySet()){
-            result += "    " + id + ": " + this.borrowed_elems.get(id) + "\n";
+            for(Date time : this.borrowed_elems.get(id)){
+                result += "\n    " + id + ": " + formatter.format(time);
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<Integer> getIds(){
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for (Integer id : this.borrowed_elems.keySet()){
+            result.add(id);
+        }
+        return result;
+    }
+
+    public ArrayList<String> getBorrowDates(int elem_id){
+        ArrayList<String> result = new ArrayList<String>();
+        for(Date time : this.borrowed_elems.get(elem_id)){
+            result.add(formatter.format(time));
         }
         return result;
     }
 
     public void borrowElement(int elem_id){
         if(this.borrowed_elems.containsKey(elem_id)){
-            this.borrowed_elems.put(elem_id, this.borrowed_elems.get(elem_id) + 1);
+            // TODO try later that:
+            // this.borrowed_elems.get(elem_id).add(new Date(System.currentTimeMillis()));
+            // this.borrowed_elems.put(elem_id, this.borrowed_elems.get(elem_id));
+            ArrayList<Date> new_list = this.borrowed_elems.get(elem_id);
+            new_list.add(new Date(System.currentTimeMillis()));
+            this.borrowed_elems.put(elem_id, new_list);
         } else {
-            this.borrowed_elems.put(elem_id, 1);
+            ArrayList<Date> new_list = new ArrayList<Date>();
+            new_list.add(new Date(System.currentTimeMillis()));
+            this.borrowed_elems.put(elem_id, new_list);
         }
     }
 
     public void returnElement(int elem_id){
         if(this.borrowed_elems.containsKey(elem_id)){
-            if(this.borrowed_elems.get(elem_id) > 1){
-                this.borrowed_elems.put(elem_id, this.borrowed_elems.get(elem_id) - 1);
+            if(this.borrowed_elems.get(elem_id).size() > 1){
+                // TODO test later that:
+                // this.borrowed_elems.get(elem_id).remove(0);
+                // this.borrowed_elems.put(elem_id, this.borrowed_elems.get(elem_id));
+                ArrayList<Date> new_list = this.borrowed_elems.get(elem_id);
+                new_list.remove(0);
+                this.borrowed_elems.put(elem_id, new_list);
             } else {
                 this.borrowed_elems.remove(elem_id);
             }

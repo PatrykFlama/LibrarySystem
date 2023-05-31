@@ -207,7 +207,6 @@ ___
 <summary> Stuff </summary>
 
 ## TODO
-* add time
 * create elements,students in ui
 ___
 ## Stuff
