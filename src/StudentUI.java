@@ -142,9 +142,14 @@ public class StudentUI extends JComponent implements ActionListener {
             public void actionPerformed(ActionEvent event){
                 String cmd = event.getActionCommand();
                 if(cmd.equals("Borrow")){
-                    int id = Integer.parseInt(element_id.getText());
-                    student.borrowElement(id);
-                    element_id.setText("");
+                    try{
+                        int id = Integer.parseInt(element_id.getText());
+                        elements.getElem(id);
+                        student.borrowElement(id);
+                        element_id.setText("");
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "Wrong element id");
+                    }
                 }
             }
         });
@@ -164,9 +169,14 @@ public class StudentUI extends JComponent implements ActionListener {
             public void actionPerformed(ActionEvent event){
                 String cmd = event.getActionCommand();
                 if(cmd.equals("Return")){
-                    int id = Integer.parseInt(element_id.getText());
-                    student.returnElement(id);
-                    element_id.setText("");
+                    try{
+                        int id = Integer.parseInt(element_id.getText());
+                        elements.getElem(id);
+                        student.returnElement(id);
+                        element_id.setText("");
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "Wrong element id");
+                    }
                 }
             }
         });
