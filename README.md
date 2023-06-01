@@ -205,6 +205,54 @@ classDiagram
     }
 ```
 ___
+
+## Classes functionality
+### MainUI
+Main class, that starts the application. It is responsible for login screen and choosing what type of user is logging in. It also stores login credentials for librarian and students.
+
+### LibrarianUI
+Class that is responsible for librarian user interface. It is responsible for creating and managing other UI classes. It also stores data about students and elements.
+
+### StudentUI
+Class that is responsible for student user interface. It is responsible for creating and managing other UI classes. It also stores data about student.
+
+### Students
+Class that stores data about students. It is responsible for adding, removing, replacing students. It also stores data in a file.
+
+### Student
+Class that stores data about student. It is responsible for checking if data is correct, saving and loading data.
+
+### StudentEdit
+Class that is responsible for editing student data. It is responsible for creating and managing other UI classes.
+
+### Elems
+Class that stores data about elements. It is responsible for adding, removing, replacing elements. It also stores data in a file.
+
+### Elem
+Class that stores data about element. It is responsible for checking if data is correct, saving and loading data.
+
+### Book
+Class that stores data about book. It is responsible for checking if data is correct, saving and loading data.
+
+### NewsPaper
+Class that stores data about news paper. It is responsible for checking if data is correct, saving and loading data.
+
+### Movie
+Class that stores data about movie. It is responsible for checking if data is correct, saving and loading data.
+
+### ElemEdit
+Class that is responsible for editing element data. It is responsible for creating and managing other UI classes.
+
+### EditBook
+Class that is responsible for editing book data. It is responsible for creating and managing other UI classes.
+
+### EditMovie
+Class that is responsible for editing movie data. It is responsible for creating and managing other UI classes.
+
+### EditNewsPaper
+Class that is responsible for editing news paper data. It is responsible for creating and managing other UI classes.
+
+
 <!--! end of oficial part of readme -->
 
 <details>
