@@ -206,6 +206,9 @@ classDiagram
 ```
 ___
 
+## In-depth documentation
+[Documentation](./doc/) generated with [Doxygen](https://www.doxygen.nl/index.html) and [Graphviz](https://graphviz.org/).
+
 ## Classes functionality
 ### MainUI
 Main class, that starts the application. It is responsible for login screen and choosing what type of user is logging in. It also stores login credentials for librarian and students.
