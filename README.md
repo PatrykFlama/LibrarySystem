@@ -33,13 +33,13 @@ classDiagram
     StudentUI --> Student
     Elems --> Elem
 
-    Elem --|> Book
-    Elem --|> NewsPaper
-    Elem --|> Movie
+    Elem <|-- Book
+    Elem <|-- NewsPaper
+    Elem <|-- Movie
 
-    ElemEdit --|> EditBook
-    ElemEdit --|> EditMovie
-    ElemEdit --|> EditNewsPaper
+    ElemEdit <|-- EditBook
+    ElemEdit <|-- EditMovie
+    ElemEdit <|-- EditNewsPaper
 
     ElemEdit --> Elem
     EditBook --> Book
