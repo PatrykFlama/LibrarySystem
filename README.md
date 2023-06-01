@@ -126,6 +126,7 @@ classDiagram
         +void replaceElem()
         +Elem getElem()
         +String toString()
+        +ArrayList searchElems()
 
         +void save()
         +Elems load()
