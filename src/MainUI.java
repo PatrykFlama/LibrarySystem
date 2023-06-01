@@ -1,7 +1,6 @@
 import java.awt.Container;
 import java.awt.event.*;
 import java.beans.PropertyVetoException;
-
 import javax.swing.*;
 import Structs.Elems;
 import Structs.Student;
@@ -37,15 +36,15 @@ public class MainUI implements ActionListener {
         librarianPasswd = new JTextField();
         studentLogin = new JTextField();
         studentPasswd = new JTextField();
-
-        students = Students.load(students_filename);
-        elements = Elems.load(elements_filename);
     }
     
     public void run() {
-        regenTestData();
+        // regenTestData();         //! uncomment to regen test data
         setupDesktop();
         setupMainFrame();
+
+        students = Students.load(students_filename);
+        elements = Elems.load(elements_filename);
     }
     
     void LibrarianUI(){

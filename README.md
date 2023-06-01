@@ -262,7 +262,8 @@ Class that is responsible for editing news paper data. It is responsible for cre
 <details>
 <summary> Stuff </summary>
 
-## TODO
+## Test data description
+To test programm and see its functionality uncomment `regenTestData()` line in MainUI - that will generate example test data on program launch. By default students have no password, and librarian to login has to use _librarian_ username and no password.
 ___
 ## Stuff
 ### Wymagania
