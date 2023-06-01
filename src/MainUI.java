@@ -139,11 +139,11 @@ public class MainUI implements ActionListener {
 
     Boolean checkLibrarianCredentials(){
         return librarianLogin.getText().equals("librarian") && 
-               librarianPasswd.getPassword().equals("librarian".toCharArray());
+               (new String(librarianPasswd.getPassword())).equals("librarian");
     }
     Boolean checkStudentCredentials(){
         try{
-        return students.getStudent(Integer.parseInt(studentLogin.getText())).checkPassword(studentPasswd.getPassword().toString());
+            return students.getStudent(Integer.parseInt(studentLogin.getText())).checkPassword(new String(studentPasswd.getPassword()));
         } catch(Exception e) {
             return false;
         }

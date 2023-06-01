@@ -234,7 +234,7 @@ public class StudentUI extends JComponent implements ActionListener {
 
     void setDisplayChangePasswordContainer(){
         content.add(new JLabel("Enter old password:"));
-        JTextField old_password = new JTextField();
+        JPasswordField old_password = new JPasswordField();
         content.add(old_password);
 
         content.add(new JLabel("Enter new password:"));
@@ -242,7 +242,7 @@ public class StudentUI extends JComponent implements ActionListener {
         content.add(new_password);
 
         content.add(new JLabel("Enter new password again:"));
-        JTextField new_password_check = new JTextField();
+        JPasswordField new_password_check = new JPasswordField();
         content.add(new_password_check);
 
         JButton change_button = new JButton("Change");
@@ -250,11 +250,11 @@ public class StudentUI extends JComponent implements ActionListener {
             public void actionPerformed(ActionEvent event){
                 String cmd = event.getActionCommand();
                 if(cmd.equals("Change")){
-                    if(!student.checkPassword(old_password.getText())){
+                    if(!student.checkPassword(new String(old_password.getPassword()))){
                         JOptionPane.showMessageDialog(null, "Wrong password");
                         return;
                     }
-                    if(!new_password.getText().equals(new_password_check.getText())){
+                    if(!new_password.getText().equals(new String(new_password_check.getPassword()))){
                         JOptionPane.showMessageDialog(null, "Passwords don't match");
                         return;
                     }
