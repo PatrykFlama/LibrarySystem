@@ -27,15 +27,24 @@ public class MainUI implements ActionListener {
     Container loginContent;
 
     JTextField librarianLogin;
-    JTextField librarianPasswd;
+    JPasswordField librarianPasswd;
     JTextField studentLogin;
-    JTextField studentPasswd;
+    JPasswordField studentPasswd;
 
     public MainUI(){
         librarianLogin = new JTextField();
-        librarianPasswd = new JTextField();
+        librarianPasswd = new JPasswordField();
         studentLogin = new JTextField();
-        studentPasswd = new JTextField();
+        studentPasswd = new JPasswordField();
+
+        librarianLogin.setActionCommand("login_librarian");
+        librarianLogin.addActionListener(this);
+        librarianPasswd.setActionCommand("login_librarian");
+        librarianPasswd.addActionListener(this);
+        studentLogin.setActionCommand("login_student");
+        studentLogin.addActionListener(this);
+        studentPasswd.setActionCommand("login_student");
+        studentPasswd.addActionListener(this);
     }
     
     public void run() {
@@ -129,11 +138,12 @@ public class MainUI implements ActionListener {
     }
 
     Boolean checkLibrarianCredentials(){
-        return librarianLogin.getText().equals("librarian") && librarianPasswd.getText().equals("");
+        return librarianLogin.getText().equals("librarian") && 
+               librarianPasswd.getPassword().equals("librarian".toCharArray());
     }
     Boolean checkStudentCredentials(){
         try{
-        return students.getStudent(Integer.parseInt(studentLogin.getText())).checkPassword(studentPasswd.getText());
+        return students.getStudent(Integer.parseInt(studentLogin.getText())).checkPassword(studentPasswd.getPassword().toString());
         } catch(Exception e) {
             return false;
         }
