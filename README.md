@@ -1,4 +1,4 @@
-# [Library Sysyem](https://github.com/PatrykFlama/LibrarySysyem)
+# [Library System](https://github.com/PatrykFlama/LibrarySysyem)
 System for manging a university library, that can be accessed by students and librarian (administrator). Librarian can add/remove/edit books, movies, news papers and manage students. Student can rent/return books (and other), search for them. The data is stored in files.    
 More features will be added  as needed.
 
